@@ -19,14 +19,32 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio | Creative Developer",
-  description: "Immersive portfolio showcasing cutting-edge web development with GSAP, Next.js, and WebGL. Experience award-winning design and scrollytelling.",
-  keywords: ["portfolio", "web developer", "GSAP", "Next.js", "creative developer", "scrollytelling"],
-  authors: [{ name: "Your Name" }],
+  title: "Luc Tchamdja | Ingénieur IA & Data Science",
+  description: "Portfolio professionnel de Luc Tchamdja, Ingénieur en Intelligence Artificielle et Data Science. Expertise en Machine Learning, Deep Learning, développement full-stack et analyse de données.",
+  keywords: [
+    "Intelligence Artificielle",
+    "Data Science",
+    "Machine Learning",
+    "Deep Learning",
+    "Python",
+    "TensorFlow",
+    "PyTorch",
+    "Next.js",
+    "Full-Stack Developer",
+    "Portfolio",
+    "Luc Tchamdja"
+  ],
+  authors: [{ name: "Luc Tchamdja" }],
   openGraph: {
-    title: "Portfolio | Creative Developer",
-    description: "Award-winning immersive portfolio with advanced scrollytelling",
+    title: "Luc Tchamdja | Ingénieur IA & Data Science",
+    description: "Portfolio professionnel - Expertise en IA, Data Science et développement full-stack",
     type: "website",
+    locale: "fr_FR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Luc Tchamdja | Ingénieur IA & Data Science",
+    description: "Portfolio professionnel - Expertise en IA, Data Science et développement full-stack",
   },
 };
 

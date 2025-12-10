@@ -85,7 +85,7 @@ export default function HeroSection() {
 
                 <div className="overflow-hidden">
                     <p className="hero-subtitle max-w-2xl mx-auto text-lg md:text-xl text-foreground/60 leading-relaxed">
-                        Ingénieur passionné par l'IA et la Data Science avec une solide expertise
+                        Ingénieur passionné par l&apos;IA et la Data Science avec une solide expertise
                         en machine learning, analyse de données et développement full-stack
                     </p>
                 </div>

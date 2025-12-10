@@ -84,7 +84,7 @@ export default function SkillsRoadmap() {
                 </h2>
                 <p className="text-foreground/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
                     Mon expertise technique couvre un large éventail de domaines,
-                    de l'IA et la Data Science au développement full-stack
+                    de l&apos;IA et la Data Science au développement full-stack
                 </p>
             </div>
 
