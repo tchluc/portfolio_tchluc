@@ -1,22 +1,8 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ThemeToggle from "@/components/ThemeToggle";
 import ScrollProgress from "@/components/ScrollProgress";
-
-// Google Fonts configuration
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-outfit",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Luc Tchamdja | Ingénieur IA & Data Science",
@@ -55,9 +41,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body
-        className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
-      >
+      <head>
+        {/* Google Fonts loaded via CDN for better resilience */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&display=swap" 
+          rel="stylesheet"
+        />
+      </head>
+      <body className="font-sans antialiased">
         <SmoothScroll>
           <ScrollProgress />
           <ThemeToggle />

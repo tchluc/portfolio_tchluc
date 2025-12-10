@@ -57,7 +57,7 @@ body {
     color: var(--foreground);
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
