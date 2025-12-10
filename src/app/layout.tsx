@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ThemeToggle from "@/components/ThemeToggle";
+import ScrollProgress from "@/components/ScrollProgress";
 
 // Google Fonts configuration
 const inter = Inter({
@@ -35,11 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body
         className={`${inter.variable} ${outfit.variable} font-sans antialiased`}
       >
         <SmoothScroll>
+          <ScrollProgress />
           <ThemeToggle />
           {children}
         </SmoothScroll>

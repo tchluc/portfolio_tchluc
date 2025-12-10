@@ -101,16 +101,26 @@ export default function ProjectsSection() {
                         {/* Project card */}
                         <div
                             className={cn(
-                                "glass-card p-6 md:p-8 rounded-2xl",
+                                "modern-card",
                                 "hover-glow",
-                                "overflow-hidden"
+                                "overflow-hidden",
+                                "border-2 border-transparent hover:border-primary/30"
                             )}
                         >
                             {/* Project image */}
-                            <div className="relative aspect-video rounded-xl overflow-hidden mb-6 bg-light-bg dark:bg-dark-bg">
-                                <div className="project-image absolute inset-0 flex items-center justify-center text-primary/20 text-6xl">
-                                    #{index + 1}
+                            <div className="relative aspect-video rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-primary/20 to-purple-500/20 group-hover:scale-105 transition-transform duration-500">
+                                <div className="project-image absolute inset-0 flex items-center justify-center">
+                                    <div className="text-center">
+                                        <div className="text-6xl md:text-8xl font-bold text-primary/30 mb-2">
+                                            #{index + 1}
+                                        </div>
+                                        <div className="text-sm text-foreground/40 uppercase tracking-wider">
+                                            Projet
+                                        </div>
+                                    </div>
                                 </div>
+                                {/* Shimmer effect on hover */}
+                                <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             </div>
 
                             {/* Project info */}
@@ -119,7 +129,7 @@ export default function ProjectsSection() {
                                     {project.title}
                                 </h3>
 
-                                <p className="text-foreground/70 line-clamp-3">
+                                <p className="text-foreground/70 line-clamp-3 text-base md:text-lg leading-relaxed">
                                     {project.description}
                                 </p>
 
@@ -128,7 +138,7 @@ export default function ProjectsSection() {
                                     {project.tags.map((tag) => (
                                         <span
                                             key={tag}
-                                            className="px-3 py-1 text-sm rounded-full bg-primary/10 text-primary border border-primary/20"
+                                            className="px-4 py-2 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:scale-105 transition-all duration-300"
                                         >
                                             {tag}
                                         </span>
@@ -142,14 +152,16 @@ export default function ProjectsSection() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className={cn(
-                                            "inline-flex items-center gap-2",
-                                            "text-primary hover:text-primary-light",
-                                            "transition-colors duration-300",
-                                            "group/link"
+                                            "inline-flex items-center gap-2 mt-4",
+                                            "px-6 py-3 rounded-full",
+                                            "bg-primary/10 hover:bg-primary text-foreground hover:text-white",
+                                            "border border-primary/30 hover:border-primary",
+                                            "transition-all duration-300",
+                                            "group/link font-medium"
                                         )}
                                     >
-                                        <span>View Project</span>
-                                        <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                                        <span>Voir le Projet</span>
+                                        <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                     </a>
                                 )}
                             </div>

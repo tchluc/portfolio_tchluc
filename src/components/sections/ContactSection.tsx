@@ -50,47 +50,57 @@ export default function ContactSection() {
     const socialLinks = [
         {
             name: "Email",
-            icon: <Mail className="w-6 h-6" />,
-            href: "mailto:votre.email@example.com",
-            label: "votre.email@example.com",
+            icon: <Mail className="w-8 h-8" />,
+            href: "mailto:tchamdjaluc@gmail.com",
+            label: "tchamdjaluc@gmail.com",
             color: "hover:text-blue-400",
+            bgGradient: "from-blue-500/20 to-cyan-500/20",
         },
         {
             name: "GitHub",
-            icon: <Github className="w-6 h-6" />,
-            href: "https://github.com/votre-username",
-            label: "@votre-username",
+            icon: <Github className="w-8 h-8" />,
+            href: "https://github.com/tchluc",
+            label: "@tchluc",
             color: "hover:text-purple-400",
+            bgGradient: "from-purple-500/20 to-pink-500/20",
         },
         {
             name: "LinkedIn",
-            icon: <Linkedin className="w-6 h-6" />,
-            href: "https://linkedin.com/in/votre-profile",
-            label: "/in/votre-profile",
+            icon: <Linkedin className="w-8 h-8" />,
+            href: "https://linkedin.com/in/luc-tchamdja",
+            label: "/in/luc-tchamdja",
             color: "hover:text-cyan-400",
+            bgGradient: "from-cyan-500/20 to-blue-500/20",
         },
         {
             name: "Twitter",
-            icon: <Twitter className="w-6 h-6" />,
-            href: "https://twitter.com/votre-username",
-            label: "@votre-username",
+            icon: <Twitter className="w-8 h-8" />,
+            href: "https://twitter.com/tchluc",
+            label: "@tchluc",
             color: "hover:text-sky-400",
+            bgGradient: "from-sky-500/20 to-indigo-500/20",
         },
     ];
 
     return (
         <section
+            id="contact"
             ref={containerRef}
-            className="relative min-h-screen flex items-center px-4 md:px-16 py-32 bg-light-surface dark:bg-dark-surface"
+            className="relative min-h-screen flex items-center px-4 md:px-16 py-32 bg-light-surface dark:bg-dark-surface overflow-hidden"
         >
-            <div className="max-w-7xl mx-auto w-full">
+            {/* Background decoration */}
+            <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+
+            <div className="max-w-7xl mx-auto w-full relative z-10">
                 {/* Title */}
                 <div className="text-center mb-16 contact-title">
                     <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-glow mb-6">
-                        Travaillons ensemble
+                        Travaillons Ensemble
                     </h2>
-                    <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto">
-                        Vous avez un projet en tête ? Contactez-moi et discutons de la façon dont je peux vous aider.
+                    <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+                        Vous avez un projet innovant ? Discutons de la façon dont je peux contribuer
+                        à votre réussite avec mes compétences en IA et Data Science.
                     </p>
                 </div>
 
@@ -104,24 +114,31 @@ export default function ContactSection() {
                             rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
                             className={cn(
                                 "contact-card",
-                                "glass-card p-8 rounded-2xl",
-                                "group",
+                                "modern-card",
+                                "group relative overflow-hidden",
                                 "transition-all duration-300",
-                                "hover:scale-105 hover-glow"
+                                "hover:scale-105"
                             )}
                         >
-                            <div className="flex flex-col items-center text-center space-y-4">
+                            {/* Background gradient on hover */}
+                            <div className={cn(
+                                "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                                link.bgGradient
+                            )} />
+                            
+                            <div className="flex flex-col items-center text-center space-y-4 relative z-10">
                                 <div className={cn(
-                                    "text-primary transition-colors duration-300",
-                                    link.color
+                                    "text-primary transition-all duration-300",
+                                    link.color,
+                                    "group-hover:scale-110"
                                 )}>
                                     {link.icon}
                                 </div>
                                 <div>
-                                    <h3 className="font-display font-bold text-lg mb-1">
+                                    <h3 className="font-display font-bold text-xl mb-2">
                                         {link.name}
                                     </h3>
-                                    <p className="text-sm text-foreground/60 break-all">
+                                    <p className="text-sm md:text-base text-foreground/60 break-all">
                                         {link.label}
                                     </p>
                                 </div>
@@ -133,20 +150,18 @@ export default function ContactSection() {
                 {/* CTA Button */}
                 <div className="text-center">
                     <a
-                        href="mailto:votre.email@example.com"
+                        href="mailto:tchamdjaluc@gmail.com"
                         className={cn(
                             "inline-flex items-center gap-3",
-                            "glass-card px-8 py-4 rounded-full",
-                            "text-lg font-semibold",
-                            "text-primary",
-                            "hover:bg-primary/10",
+                            "px-10 py-5 rounded-full",
+                            "bg-primary text-white font-semibold text-lg",
+                            "hover-glow pulse-border",
                             "transition-all duration-300",
-                            "hover:scale-105",
                             "group"
                         )}
                     >
-                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        <span>Envoyer un message</span>
+                        <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <span>Envoyer un Message</span>
                     </a>
                 </div>
             </div>
