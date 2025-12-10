@@ -14,22 +14,22 @@ export default function Footer() {
         {
             name: "GitHub",
             icon: <Github className="w-5 h-5" />,
-            href: "https://github.com/votre-username",
+            href: "https://github.com/tchluc",
         },
         {
             name: "LinkedIn",
             icon: <Linkedin className="w-5 h-5" />,
-            href: "https://linkedin.com/in/votre-profile",
+            href: "https://linkedin.com/in/luc-tchamdja",
         },
         {
             name: "Twitter",
             icon: <Twitter className="w-5 h-5" />,
-            href: "https://twitter.com/votre-username",
+            href: "https://twitter.com/tchluc",
         },
         {
             name: "Email",
             icon: <Mail className="w-5 h-5" />,
-            href: "mailto:votre.email@example.com",
+            href: "mailto:tchamdjaluc@gmail.com",
         },
     ];
 
@@ -47,11 +47,12 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Column */}
                     <div className="space-y-4">
-                        <h3 className="text-2xl font-display font-bold gradient-text">
-                            Portfolio
+                        <h3 className="text-2xl md:text-3xl font-display font-bold gradient-text">
+                            Luc Tchamdja
                         </h3>
-                        <p className="text-foreground/60 text-sm">
-                            Développeur Full Stack passionné par la création d&apos;expériences web exceptionnelles.
+                        <p className="text-foreground/60 text-sm md:text-base leading-relaxed">
+                            Ingénieur en Intelligence Artificielle et Data Science, 
+                            passionné par l&apos;innovation technologique et la création de solutions intelligentes.
                         </p>
                     </div>
 
@@ -87,10 +88,10 @@ export default function Footer() {
                                     target={link.name !== "Email" ? "_blank" : undefined}
                                     rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
                                     className={cn(
-                                        "glass-card p-3 rounded-lg",
+                                        "modern-card p-3 rounded-xl",
                                         "text-foreground/60 hover:text-primary",
                                         "transition-all duration-300",
-                                        "hover:scale-110"
+                                        "hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
                                     )}
                                     aria-label={link.name}
                                 >
@@ -106,11 +107,11 @@ export default function Footer() {
 
                 {/* Bottom Footer */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-foreground/40 text-sm">
-                        © {currentYear} Portfolio. Tous droits réservés.
+                    <p className="text-foreground/40 text-sm md:text-base">
+                        © {currentYear} Luc Tchamdja. Tous droits réservés.
                     </p>
-                    <p className="text-foreground/40 text-sm flex items-center gap-2">
-                        Fait avec <Heart className="w-4 h-4 text-primary fill-primary" /> et Next.js
+                    <p className="text-foreground/40 text-sm md:text-base flex items-center gap-2">
+                        Créé avec <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" /> et Next.js
                     </p>
                 </div>
             </div>

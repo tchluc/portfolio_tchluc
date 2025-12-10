@@ -78,12 +78,13 @@ export default function SkillsRoadmap() {
             className="relative min-h-screen px-4 md:px-16 py-20 bg-light-bg dark:bg-dark-bg"
         >
             {/* Section title */}
-            <div className="max-w-7xl mx-auto mb-16">
-                <h2 className="text-4xl md:text-6xl font-display font-bold text-glow mb-4">
-                    Skills Roadmap
+            <div className="max-w-7xl mx-auto mb-16 text-center">
+                <h2 className="text-4xl md:text-6xl font-display font-bold text-glow mb-6">
+                    Compétences Techniques
                 </h2>
-                <p className="text-foreground/60 text-lg">
-                    Mon parcours de compétences techniques
+                <p className="text-foreground/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                    Mon expertise technique couvre un large éventail de domaines,
+                    de l'IA et la Data Science au développement full-stack
                 </p>
             </div>
 
@@ -98,12 +99,12 @@ export default function SkillsRoadmap() {
                         return (
                             <div key={parent.id} className="relative">
                                 {/* Category header */}
-                                <div className="glass-card p-4 rounded-xl mb-6 text-center">
-                                    <div className="flex items-center justify-center gap-3 mb-2">
-                                        <div className="text-primary">
+                                <div className="modern-card p-6 rounded-2xl mb-8 text-center hover:scale-105 transition-transform duration-300">
+                                    <div className="flex flex-col items-center gap-3">
+                                        <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center text-primary mb-2">
                                             {categoryIcons[parent.id]}
                                         </div>
-                                        <h3 className="text-xl font-display font-bold">
+                                        <h3 className="text-xl md:text-2xl font-display font-bold gradient-text">
                                             {parent.name}
                                         </h3>
                                     </div>
@@ -133,37 +134,41 @@ export default function SkillsRoadmap() {
                                                 {/* Skill card */}
                                                 <div
                                                     className={cn(
-                                                        "glass-card p-3 rounded-lg",
-                                                        "hover-glow",
+                                                        "modern-card p-4 rounded-xl",
+                                                        "hover:scale-105 hover:shadow-2xl",
+                                                        "transition-all duration-300",
+                                                        "border-2 border-transparent hover:border-primary/30",
                                                         index % 2 === 0
                                                             ? "ml-10"
                                                             : "mr-10"
                                                     )}
                                                 >
-                                                    <div className="mb-2">
-                                                        <p className="text-sm font-semibold text-foreground">
+                                                    <div className="mb-3">
+                                                        <p className="text-sm md:text-base font-bold text-foreground">
                                                             {child.name}
                                                         </p>
                                                     </div>
 
                                                     {/* Level indicator */}
                                                     {child.level && (
-                                                        <div className="space-y-1">
+                                                        <div className="space-y-2">
                                                             <div className="flex items-center justify-between">
-                                                                <span className="text-xs text-foreground/60">
-                                                                    Niveau
+                                                                <span className="text-xs text-foreground/60 font-medium">
+                                                                    Maîtrise
                                                                 </span>
-                                                                <span className="text-xs text-primary font-semibold">
+                                                                <span className="text-xs text-primary font-bold">
                                                                     {child.level}%
                                                                 </span>
                                                             </div>
-                                                            <div className="w-full h-1.5 bg-light-border dark:bg-dark-border rounded-full overflow-hidden">
+                                                            <div className="relative w-full h-2 bg-light-border dark:bg-dark-border rounded-full overflow-hidden">
                                                                 <div
-                                                                    className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-500"
+                                                                    className="absolute h-full bg-gradient-to-r from-primary via-primary-light to-primary rounded-full transition-all duration-700 ease-out"
                                                                     style={{
                                                                         width: `${child.level}%`,
                                                                     }}
                                                                 />
+                                                                {/* Shine effect */}
+                                                                <div className="absolute inset-0 shimmer" />
                                                             </div>
                                                         </div>
                                                     )}
