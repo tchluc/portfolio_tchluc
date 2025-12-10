@@ -8,8 +8,16 @@
     --background: #ffffff;
     --foreground: #000000;
     --accent: #40e0d0;
+    --accent-light: #6FFAEB;
+    --accent-dark: #2DB3A6;
     --surface: #f8f8f8;
     --border: #e5e5e5;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
 }
 
 .dark {
@@ -17,8 +25,16 @@
     --background: #000000;
     --foreground: #ffffff;
     --accent: #40e0d0;
+    --accent-light: #6FFAEB;
+    --accent-dark: #2DB3A6;
     --surface: #0a0a0a;
     --border: #1a1a1a;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 /* Base Styles */
@@ -42,6 +58,9 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
     font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* Lenis Smooth Scroll */
@@ -83,27 +102,36 @@ section {
 
 /* Glassmorphism Utilities */
 .glass-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
 }
 
 .dark .glass-card {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Premium Hover Effects */
 .hover-glow {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, box-shadow;
 }
 
 .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(64, 224, 208, 0.4),
-        0 0 60px rgba(64, 224, 208, 0.2);
-    transform: translateY(-4px);
+    box-shadow: 0 0 40px rgba(64, 224, 208, 0.5),
+        0 0 80px rgba(64, 224, 208, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px) scale(1.02);
+}
+
+.hover-glow:active {
+    transform: translateY(-2px) scale(0.98);
+    transition: all 0.1s ease;
 }
 
 /* Custom Scrollbar */
@@ -172,4 +200,95 @@ section {
     .animate-delay-500 {
         animation-delay: 500ms;
     }
+}
+
+/* Modern Card Styles */
+.modern-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.9) 100%);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .modern-card {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.9) 100%);
+}
+
+.modern-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Gradient Overlays */
+.gradient-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(64, 224, 208, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.gradient-overlay.active {
+    opacity: 1;
+}
+
+/* Pulse Animation for CTA */
+@keyframes pulse-border {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(64, 224, 208, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 12px rgba(64, 224, 208, 0);
+    }
+}
+
+.pulse-border {
+    animation: pulse-border 2s ease-in-out infinite;
+}
+
+/* Shimmer Loading Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s infinite;
+}
+
+.dark .shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+/* Performance optimizations */
+.will-change-transform {
+    will-change: transform;
+}
+
+.will-change-opacity {
+    will-change: opacity;
+}
+
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }

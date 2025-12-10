@@ -96,10 +96,10 @@ export default function EducationTimeline() {
             {/* Section title */}
             <div className="absolute top-12 left-8 md:left-16 z-20">
                 <h2 className="text-4xl md:text-6xl font-display font-bold text-glow">
-                    Education
+                    Parcours Académique
                 </h2>
-                <p className="mt-2 text-foreground/60">
-                    
+                <p className="mt-2 text-foreground/60 text-lg">
+                    Scroll horizontalement pour découvrir mon parcours
                 </p>
             </div>
 
@@ -147,9 +147,11 @@ export default function EducationTimeline() {
                         {/* Education card */}
                         <div
                             className={cn(
-                                "relative overflow-hidden rounded-2xl",
+                                "relative overflow-hidden rounded-3xl",
                                 "h-[70vh] md:h-[75vh]",
-                                "hover-glow"
+                                "modern-card",
+                                "border-2 border-transparent hover:border-primary/30",
+                                "will-change-transform"
                             )}
                         >
                             {/* Background Image */}
@@ -159,22 +161,24 @@ export default function EducationTimeline() {
                                         src={item.image}
                                         alt={item.school}
                                         fill
-                                        className="object-cover"
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
                                         priority={index === 0}
                                     />
                                 </div>
                                 {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-light-bg/90 via-light-bg/80 to-light-bg/70 dark:from-dark-bg/90 dark:via-dark-bg/80 dark:to-dark-bg/70" />
+                                <div className="absolute inset-0 bg-gradient-to-br from-light-bg/95 via-light-bg/90 to-light-bg/85 dark:from-dark-bg/95 dark:via-dark-bg/90 dark:to-dark-bg/85" />
                                 {/* Accent gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-20" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-purple-500/10 to-transparent" />
+                                {/* Shimmer effect */}
+                                <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                             </div>
 
                             {/* Content */}
                             <div className="relative z-10 p-8 md:p-12 h-full flex flex-col justify-center">
                                 {/* Year badge */}
-                                <div className="flex items-center gap-2 mb-6 glass-card px-4 py-2 rounded-full w-fit">
-                                    <Calendar className="w-4 h-4 text-primary" />
-                                    <span className="text-primary font-semibold">
+                                <div className="flex items-center gap-3 mb-6 glass-card px-5 py-3 rounded-full w-fit hover:scale-105 transition-transform duration-300">
+                                    <Calendar className="w-5 h-5 text-primary" />
+                                    <span className="text-primary font-bold text-lg">
                                         {item.year}
                                     </span>
                                 </div>
@@ -186,33 +190,34 @@ export default function EducationTimeline() {
                                         "text-3xl md:text-4xl lg:text-5xl",
                                         "font-display font-bold",
                                         "gradient-text",
-                                        "mb-6"
+                                        "mb-8 leading-tight"
                                     )}
                                 >
                                     {item.degree}
                                 </h3>
 
                                 {/* School */}
-                                <div className="flex items-center gap-3 mb-6">
-                                    <GraduationCap className="w-6 h-6 md:w-8 md:h-8 text-primary" />
-                                    <h4 className="text-2xl md:text-3xl font-bold text-foreground">
+                                <div className="flex items-start gap-4 mb-6 glass-card p-4 rounded-2xl hover:scale-105 transition-transform duration-300">
+                                    <GraduationCap className="w-8 h-8 md:w-10 md:h-10 text-primary flex-shrink-0 mt-1" />
+                                    <h4 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground leading-tight">
                                         {item.school}
                                     </h4>
                                 </div>
 
                                 {/* Location */}
-                                <div className="flex items-center gap-2 text-foreground/70 mb-4">
-                                    <MapPin className="w-4 h-4" />
-                                    <span>{item.location}</span>
+                                <div className="flex items-center gap-3 text-foreground/70 mb-6 text-base md:text-lg">
+                                    <MapPin className="w-5 h-5 text-primary" />
+                                    <span className="font-medium">{item.location}</span>
                                 </div>
 
                                 {/* Description */}
-                                <p className="text-foreground/80 text-base md:text-lg max-w-2xl leading-relaxed">
+                                <p className="text-foreground/80 text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed">
                                     {item.description}
                                 </p>
 
-                                {/* Decorative element */}
-                                <div className="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 rounded-tl-full blur-3xl -z-10" />
+                                {/* Decorative elements */}
+                                <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-tl-full blur-3xl -z-10" />
+                                <div className="absolute top-0 left-0 w-60 h-60 bg-purple-500/5 rounded-br-full blur-3xl -z-10" />
                             </div>
                         </div>
                     </div>
