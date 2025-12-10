@@ -89,8 +89,8 @@ export default function ContactSection() {
             className="relative min-h-screen flex items-center px-4 md:px-16 py-32 bg-light-surface dark:bg-dark-surface overflow-hidden"
         >
             {/* Background decoration */}
-            <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+            <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl gpu-accelerated" />
+            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gpu-accelerated" />
 
             <div className="max-w-7xl mx-auto w-full relative z-10">
                 {/* Title */}
@@ -117,7 +117,8 @@ export default function ContactSection() {
                                 "modern-card",
                                 "group relative overflow-hidden",
                                 "transition-all duration-300",
-                                "hover:scale-105"
+                                "hover:scale-105",
+                                "gpu-accelerated"
                             )}
                         >
                             {/* Background gradient on hover */}

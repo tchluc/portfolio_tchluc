@@ -66,8 +66,8 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-br from-light-bg via-light-surface to-light-bg dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg -z-10" />
 
             {/* Animated circles */}
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-            <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float gpu-accelerated" />
+            <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-float gpu-accelerated animate-delay-500" />
 
             {/* Content */}
             <div className="max-w-5xl mx-auto text-center space-y-8 z-10">
@@ -99,7 +99,8 @@ export default function HeroSection() {
                             "px-8 py-4 rounded-full",
                             "bg-primary text-white font-semibold text-lg",
                             "hover-glow pulse-border",
-                            "transition-all duration-300"
+                            "transition-all duration-300",
+                            "will-change-transform"
                         )}
                     >
                         <Mail className="w-5 h-5" />
@@ -114,7 +115,8 @@ export default function HeroSection() {
                             "px-8 py-4 rounded-full",
                             "glass-card text-foreground font-semibold text-lg",
                             "hover:bg-primary/10 hover:scale-105",
-                            "transition-all duration-300"
+                            "transition-all duration-300",
+                            "will-change-transform"
                         )}
                     >
                         <Download className="w-5 h-5 group-hover:animate-bounce" />
@@ -128,11 +130,11 @@ export default function HeroSection() {
                         { label: "Projets Réalisés", value: "20+" },
                         { label: "Technologies", value: "15+" },
                         { label: "Certifications", value: "4+" },
-                        { label: "Années d'Expérience", value: "3+" },
+                        { label: "Années d&apos;Expérience", value: "3+" },
                     ].map((stat, index) => (
                         <div
                             key={index}
-                            className="glass-card p-4 md:p-6 rounded-2xl hover:scale-105 transition-transform duration-300"
+                            className="glass-card p-4 md:p-6 rounded-2xl hover:scale-105 transition-transform duration-300 will-change-transform"
                         >
                             <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
                                 {stat.value}

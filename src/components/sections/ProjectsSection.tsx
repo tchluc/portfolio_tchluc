@@ -104,7 +104,8 @@ export default function ProjectsSection() {
                                 "modern-card",
                                 "hover-glow",
                                 "overflow-hidden",
-                                "border-2 border-transparent hover:border-primary/30"
+                                "border-2 border-transparent hover:border-primary/30",
+                                "gpu-accelerated"
                             )}
                         >
                             {/* Project image */}
