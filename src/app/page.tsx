@@ -17,7 +17,7 @@ export default function Home() {
     return (
         <>
             <MouseFollower />
-            <main className="relative bg-dark-bg">
+            <main className="relative bg-light-bg dark:bg-dark-bg">
                 <HeroSection />
                 <ProjectsSection />
                 <EducationTimeline />

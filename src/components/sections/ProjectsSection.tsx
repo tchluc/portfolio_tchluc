@@ -73,7 +73,7 @@ export default function ProjectsSection() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen overflow-hidden bg-dark-surface"
+            className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
         >
             {/* Section title */}
             <div className="absolute top-12 left-8 md:left-16 z-10">
@@ -107,7 +107,7 @@ export default function ProjectsSection() {
                             )}
                         >
                             {/* Project image */}
-                            <div className="relative aspect-video rounded-xl overflow-hidden mb-6 bg-dark-bg">
+                            <div className="relative aspect-video rounded-xl overflow-hidden mb-6 bg-light-bg dark:bg-dark-bg">
                                 <div className="project-image absolute inset-0 flex items-center justify-center text-primary/20 text-6xl">
                                     #{index + 1}
                                 </div>

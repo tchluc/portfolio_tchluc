@@ -51,7 +51,7 @@ export default function HeroSection() {
             className="relative flex items-center justify-center min-h-screen px-4 md:px-8"
         >
             {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-dark-bg via-dark-surface to-dark-bg -z-10" />
+            <div className="absolute inset-0 bg-gradient-to-br from-light-bg via-light-surface to-light-bg dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg -z-10" />
 
             {/* Animated circle */}
             <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
@@ -81,7 +81,7 @@ export default function HeroSection() {
                     <button
                         className={cn(
                             "px-8 py-4 rounded-full",
-                            "bg-primary text-dark-bg font-semibold text-lg",
+                            "bg-primary text-white dark:text-dark-bg font-semibold text-lg",
                             "hover-glow",
                             "transition-all duration-300"
                         )}

@@ -91,7 +91,7 @@ export default function EducationTimeline() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen overflow-hidden bg-dark-surface"
+            className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
         >
             {/* Section title */}
             <div className="absolute top-12 left-8 md:left-16 z-20">
@@ -106,7 +106,7 @@ export default function EducationTimeline() {
             {/* Timeline bar */}
             <div className="absolute top-32 left-8 md:left-16 right-8 md:right-16 z-20">
                 {/* Background line */}
-                <div className="relative h-1 bg-dark-border/50 rounded-full">
+                <div className="relative h-1 bg-light-border dark:bg-dark-border/50 rounded-full">
                     {/* Animated fill */}
                     <div
                         ref={timelineRef}
@@ -163,8 +163,8 @@ export default function EducationTimeline() {
                                         priority={index === 0}
                                     />
                                 </div>
-                                {/* Dark overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-dark-bg/90 via-dark-bg/80 to-dark-bg/70" />
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-light-bg/90 via-light-bg/80 to-light-bg/70 dark:from-dark-bg/90 dark:via-dark-bg/80 dark:to-dark-bg/70" />
                                 {/* Accent gradient */}
                                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-20" />
                             </div>
