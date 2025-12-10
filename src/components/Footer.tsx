@@ -51,7 +51,7 @@ export default function Footer() {
                             Portfolio
                         </h3>
                         <p className="text-foreground/60 text-sm">
-                            Développeur Full Stack passionné par la création d'expériences web exceptionnelles.
+                            Développeur Full Stack passionné par la création d&apos;expériences web exceptionnelles.
                         </p>
                     </div>
 
