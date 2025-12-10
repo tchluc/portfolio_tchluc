@@ -75,7 +75,7 @@ export default function SkillsRoadmap() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen px-4 md:px-16 py-20 bg-dark-bg"
+            className="relative min-h-screen px-4 md:px-16 py-20 bg-light-bg dark:bg-dark-bg"
         >
             {/* Section title */}
             <div className="max-w-7xl mx-auto mb-16">
@@ -157,7 +157,7 @@ export default function SkillsRoadmap() {
                                                                     {child.level}%
                                                                 </span>
                                                             </div>
-                                                            <div className="w-full h-1.5 bg-dark-border rounded-full overflow-hidden">
+                                                            <div className="w-full h-1.5 bg-light-border dark:bg-dark-border rounded-full overflow-hidden">
                                                                 <div
                                                                     className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-500"
                                                                     style={{

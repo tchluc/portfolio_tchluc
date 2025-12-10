@@ -41,7 +41,7 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative bg-dark-bg border-t border-dark-border/30">
+        <footer className="relative bg-light-bg dark:bg-dark-bg border-t border-light-border dark:border-dark-border/30">
             <div className="max-w-7xl mx-auto px-4 md:px-16 py-12">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -102,7 +102,7 @@ export default function Footer() {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-dark-border/30 my-8" />
+                <div className="border-t border-light-border dark:border-dark-border/30 my-8" />
 
                 {/* Bottom Footer */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">

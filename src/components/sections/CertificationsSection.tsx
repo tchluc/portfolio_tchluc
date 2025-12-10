@@ -40,7 +40,7 @@ export default function CertificationsSection() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen px-4 md:px-16 py-32 bg-dark-bg"
+            className="relative min-h-screen px-4 md:px-16 py-32 bg-light-bg dark:bg-dark-bg"
         >
             {/* Section title */}
             <div className="max-w-7xl mx-auto mb-16">
@@ -83,7 +83,7 @@ export default function CertificationsSection() {
                                         style={{ backfaceVisibility: "hidden" }}
                                     >
                                         {/* Badge display */}
-                                        <div className="bg-gradient-to-br from-dark-surface to-dark-border p-8 flex items-center justify-center min-h-[280px]">
+                                        <div className="bg-gradient-to-br from-light-surface to-light-border dark:from-dark-surface dark:to-dark-border p-8 flex items-center justify-center min-h-[280px]">
                                             {cert.badgeUrl ? (
                                                 <div className="relative w-full h-full max-w-[200px] max-h-[200px]">
                                                     <Image
@@ -100,7 +100,7 @@ export default function CertificationsSection() {
                                         </div>
 
                                         {/* Certification info */}
-                                        <div className="p-6 space-y-4 bg-dark-surface/50">
+                                        <div className="p-6 space-y-4 bg-light-surface/50 dark:bg-dark-surface/50">
                                             <h3 className="text-xl font-display font-bold text-foreground leading-snug min-h-[56px] flex items-center">
                                                 {cert.name}
                                             </h3>

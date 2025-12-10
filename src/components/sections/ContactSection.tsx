@@ -81,7 +81,7 @@ export default function ContactSection() {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex items-center px-4 md:px-16 py-32 bg-dark-surface"
+            className="relative min-h-screen flex items-center px-4 md:px-16 py-32 bg-light-surface dark:bg-dark-surface"
         >
             <div className="max-w-7xl mx-auto w-full">
                 {/* Title */}
