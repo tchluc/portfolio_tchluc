@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for Theme */
+:root {
+    /* Light Mode */
+    --background: #ffffff;
+    --foreground: #000000;
+    --accent: #40e0d0;
+    --surface: #f8f8f8;
+    --border: #e5e5e5;
+}
+
+.dark {
+    /* Dark Mode */
+    --background: #ffffff;
+    --foreground: #ffffff;
+    --accent: #40e0d0;
+    --surface: #0a0a0a;
+    --border: #1a1a1a;
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+    /* Lenis will handle smooth scroll */
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Lenis Smooth Scroll */
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* Section Base */
+section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(135deg, var(--foreground) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glassmorphism Utilities */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+.dark .glass-card {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Premium Hover Effects */
+.hover-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 30px rgba(64, 224, 208, 0.4),
+        0 0 60px rgba(64, 224, 208, 0.2);
+    transform: translateY(-4px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2db3a6;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+::-moz-selection {
+    background-color: var(--accent);
+    color: var(--background);
+}
+
+/* Responsive Typography */
+@layer base {
+    h1 {
+        @apply text-5xl md:text-7xl lg:text-8xl font-bold;
+    }
+
+    h2 {
+        @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+    }
+
+    h3 {
+        @apply text-3xl md:text-4xl lg:text-5xl font-semibold;
+    }
+
+    p {
+        @apply text-base md:text-lg leading-relaxed;
+    }
+}
+
+/* Animation Utilities */
+@layer utilities {
+    .animate-delay-100 {
+        animation-delay: 100ms;
+    }
+
+    .animate-delay-200 {
+        animation-delay: 200ms;
+    }
+
+    .animate-delay-300 {
+        animation-delay: 300ms;
+    }
+
+    .animate-delay-500 {
+        animation-delay: 500ms;
+    }
+}
