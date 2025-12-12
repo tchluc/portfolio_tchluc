@@ -56,13 +56,19 @@ export default function Navigation() {
 
     // GSAP animation for nav appearance
     useGSAP(() => {
-        gsap.from(navRef.current, {
-            y: -100,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            delay: 0.5,
-        });
+        gsap.fromTo(navRef.current, 
+            {
+                y: -100,
+                opacity: 0,
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.5,
+            }
+        );
     }, { scope: navRef });
 
     // Track active section based on scroll position
@@ -108,6 +114,16 @@ export default function Navigation() {
                 "transition-all duration-500 ease-out",
                 isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"
             )}
+            style={{
+                // Inline styles as fallback when Tailwind CSS fails to load
+                position: 'fixed',
+                top: '1.5rem',
+                left: '50%',
+                transform: `translateX(-50%) translateY(${isVisible ? '0' : '-6rem'})`,
+                zIndex: 50,
+                opacity: isVisible ? 1 : 0,
+                transition: 'all 0.5s ease-out',
+            }}
         >
             <div
                 className={cn(
