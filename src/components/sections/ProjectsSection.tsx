@@ -72,6 +72,7 @@ export default function ProjectsSection() {
 
     return (
         <section
+            id="projects"
             ref={containerRef}
             className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
         >

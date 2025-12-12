@@ -39,6 +39,7 @@ export default function CertificationsSection() {
 
     return (
         <section
+            id="certifications"
             ref={containerRef}
             className="relative min-h-screen px-4 md:px-16 py-32 bg-light-bg dark:bg-dark-bg"
         >
@@ -88,7 +89,7 @@ export default function CertificationsSection() {
                                             {/* Background decoration */}
                                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50" />
                                             <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl" />
-                                            
+
                                             {cert.badgeUrl ? (
                                                 <div className="relative w-full h-full max-w-[200px] max-h-[200px] z-10 hover:scale-110 transition-transform duration-500">
                                                     <Image
@@ -142,7 +143,7 @@ export default function CertificationsSection() {
                                         {/* Background decoration */}
                                         <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
                                         <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl" />
-                                        
+
                                         {/* Skills header */}
                                         <div className="mb-6 relative z-10">
                                             <div className="flex items-center gap-3 mb-3">

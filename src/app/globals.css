@@ -2,39 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CSS Variables for Theme */
+/* CSS Variables for Theme - Navy/Teal/Blue Professional Palette */
 :root {
     /* Light Mode */
-    --background: #ffffff;
-    --foreground: #000000;
-    --accent: #40e0d0;
-    --accent-light: #6FFAEB;
-    --accent-dark: #2DB3A6;
-    --surface: #f8f8f8;
-    --border: #e5e5e5;
-    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    --background: #f8fafc;
+    --foreground: #0a1628;
+    --primary: #14b8a6;
+    --primary-light: #2dd4bf;
+    --primary-dark: #0d9488;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --accent-dark: #2563eb;
+    --secondary: #6366f1;
+    --navy: #0a1628;
+    --navy-light: #1e293b;
+    --surface: #ffffff;
+    --surface-secondary: #f1f5f9;
+    --border: #e2e8f0;
+    --muted: #64748b;
+    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #3b82f6 50%, #6366f1 100%);
+    --gradient-accent: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(20, 184, 166, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
+    --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.08);
+    --shadow-md: 0 4px 16px rgba(10, 22, 40, 0.12);
+    --shadow-lg: 0 8px 32px rgba(10, 22, 40, 0.16);
+    --shadow-glow: 0 0 40px rgba(20, 184, 166, 0.4);
 }
 
 .dark {
-    /* Dark Mode */
-    --background: #000000;
-    --foreground: #ffffff;
-    --accent: #40e0d0;
-    --accent-light: #6FFAEB;
-    --accent-dark: #2DB3A6;
-    --surface: #0a0a0a;
-    --border: #1a1a1a;
-    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    /* Dark Mode - Navy Theme */
+    --background: #0a1628;
+    --foreground: #f8fafc;
+    --primary: #14b8a6;
+    --primary-light: #2dd4bf;
+    --primary-dark: #0d9488;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --accent-dark: #2563eb;
+    --secondary: #818cf8;
+    --navy: #0a1628;
+    --navy-light: #1e293b;
+    --surface: #0f172a;
+    --surface-secondary: #1e293b;
+    --border: #334155;
+    --muted: #94a3b8;
+    --gradient-primary: linear-gradient(135deg, #14b8a6 0%, #3b82f6 50%, #6366f1 100%);
+    --gradient-accent: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);
+    --gradient-glow: linear-gradient(135deg, rgba(20, 184, 166, 0.4) 0%, rgba(59, 130, 246, 0.4) 100%);
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 60px rgba(20, 184, 166, 0.5);
 }
 
 /* Base Styles */
@@ -94,44 +112,88 @@ section {
 
 /* Gradient Text */
 .gradient-text {
-    background: linear-gradient(135deg, var(--foreground) 0%, var(--accent) 100%);
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-/* Glassmorphism Utilities */
+.gradient-text-accent {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Glassmorphism Utilities - Navy Theme */
 .glass-card {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(20, 184, 166, 0.15);
+    border-radius: 24px;
+    box-shadow: var(--shadow-md), 0 0 0 1px rgba(20, 184, 166, 0.05);
 }
 
 .dark .glass-card {
-    background: rgba(10, 10, 10, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    box-shadow: var(--shadow-lg), 0 0 40px rgba(20, 184, 166, 0.1);
+}
+
+.glass-card-strong {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+    border: 1px solid rgba(20, 184, 166, 0.2);
+    border-radius: 24px;
     box-shadow: var(--shadow-lg);
 }
 
-/* Premium Hover Effects */
+.dark .glass-card-strong {
+    background: rgba(15, 23, 42, 0.95);
+    border: 1px solid rgba(20, 184, 166, 0.3);
+}
+
+/* Premium Hover Effects - Teal/Blue Glow */
 .hover-glow {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, box-shadow;
 }
 
 .hover-glow:hover {
-    box-shadow: 0 0 40px rgba(64, 224, 208, 0.5),
-        0 0 80px rgba(64, 224, 208, 0.3),
-        0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow:
+        0 0 20px rgba(20, 184, 166, 0.4),
+        0 0 40px rgba(59, 130, 246, 0.3),
+        0 0 60px rgba(20, 184, 166, 0.2),
+        0 20px 40px rgba(10, 22, 40, 0.3);
     transform: translateY(-8px) scale(1.02);
 }
 
 .hover-glow:active {
     transform: translateY(-2px) scale(0.98);
     transition: all 0.1s ease;
+}
+
+/* Gradient Border Effect */
+.gradient-border {
+    position: relative;
+    background: var(--surface);
+    border-radius: 24px;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 26px;
+    background: var(--gradient-primary);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.gradient-border:hover::before {
+    opacity: 1;
 }
 
 /* Custom Scrollbar */
@@ -236,9 +298,12 @@ section {
 
 /* Pulse Animation for CTA */
 @keyframes pulse-border {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 0 0 0 rgba(64, 224, 208, 0.7);
     }
+
     50% {
         box-shadow: 0 0 0 12px rgba(64, 224, 208, 0);
     }
@@ -253,29 +318,26 @@ section {
     0% {
         background-position: -1000px 0;
     }
+
     100% {
         background-position: 1000px 0;
     }
 }
 
 .shimmer {
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.3) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
     background-size: 1000px 100%;
     animation: shimmer 2s infinite;
 }
 
 .dark .shimmer {
-    background: linear-gradient(
-        90deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.1) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            rgba(255, 255, 255, 0) 100%);
 }
 
 /* Performance optimizations */

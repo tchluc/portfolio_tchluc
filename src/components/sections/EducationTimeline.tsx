@@ -90,6 +90,7 @@ export default function EducationTimeline() {
 
     return (
         <section
+            id="education"
             ref={containerRef}
             className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
         >

@@ -59,6 +59,7 @@ export default function HeroSection() {
 
     return (
         <section
+            id="hero"
             ref={containerRef}
             className="relative flex items-center justify-center min-h-screen px-4 md:px-8 overflow-hidden"
         >

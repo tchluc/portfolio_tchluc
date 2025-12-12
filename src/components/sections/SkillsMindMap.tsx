@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 import { useGSAP } from "@/hooks/useGSAP";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,10 +11,16 @@ import { Code, Database, Palette, Box, Brain } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Dynamic import for ECharts (SSR fix)
+const SkillsRadarChart = dynamic(
+    () => import("@/components/charts/SkillsRadarChart"),
+    { ssr: false }
+);
+
 /**
  * SkillsRoadmap Component
  * Visual roadmap showing skill categories as vertical paths
- * Each path displays skills as connected nodes with levels
+ * Includes an interactive radar chart for skill overview
  */
 export default function SkillsRoadmap() {
     const containerRef = useRef<HTMLElement>(null);
@@ -68,12 +75,25 @@ export default function SkillsRoadmap() {
                     },
                 });
             });
+
+            // Animate radar chart
+            gsap.from(".radar-chart-container", {
+                scale: 0.8,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: ".radar-chart-container",
+                    start: "top 80%",
+                },
+            });
         },
         { scope: containerRef, dependencies: [parentSkills] }
     );
 
     return (
         <section
+            id="skills"
             ref={containerRef}
             className="relative min-h-screen px-4 md:px-16 py-20 bg-light-bg dark:bg-dark-bg"
         >
@@ -86,6 +106,13 @@ export default function SkillsRoadmap() {
                     Mon expertise technique couvre un large éventail de domaines,
                     de l&apos;IA et la Data Science au développement full-stack
                 </p>
+            </div>
+
+            {/* Radar Chart - Overview */}
+            <div className="max-w-7xl mx-auto mb-16">
+                <div className="radar-chart-container max-w-md mx-auto">
+                    <SkillsRadarChart />
+                </div>
             </div>
 
             {/* Roadmap grid */}
