@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit, Space_Grotesk } from "next/font/google";
+import { Inter, Outfit, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -21,6 +21,12 @@ const outfit = Outfit({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -62,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className={`${inter.variable} ${outfit.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+        className={`${inter.variable} ${outfit.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
         <SmoothScroll>
           <ScrollProgress />
