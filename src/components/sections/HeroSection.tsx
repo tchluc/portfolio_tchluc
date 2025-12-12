@@ -112,7 +112,7 @@ export default function HeroSection() {
                         href="/cv.pdf"
                         download
                         className={cn(
-                            "hero-cta group inline-flex items-center gap-3",
+                            "group inline-flex items-center gap-3",
                             "px-8 py-4 rounded-full",
                             "glass-card text-foreground font-semibold text-lg",
                             "hover:bg-primary/10 hover:scale-105",
