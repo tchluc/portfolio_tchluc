@@ -68,7 +68,7 @@ export default function MouseFollower() {
             {/* Primary Teal gradient - largest and slowest */}
             <div
                 ref={follower1Ref}
-                className="pointer-events-none fixed top-0 left-0 z-30 w-[500px] h-[500px] opacity-30 blur-3xl hidden md:block"
+                className="pointer-events-none fixed top-0 left-0 z-10 w-[500px] h-[500px] opacity-30 blur-3xl hidden md:block"
                 style={{
                     background: "radial-gradient(circle, rgba(20, 184, 166, 0.5) 0%, rgba(20, 184, 166, 0.3) 40%, transparent 70%)",
                     mixBlendMode: "screen",
@@ -79,7 +79,7 @@ export default function MouseFollower() {
             {/* Secondary Blue gradient - medium */}
             <div
                 ref={follower2Ref}
-                className="pointer-events-none fixed top-0 left-0 z-30 w-80 h-80 opacity-25 blur-2xl hidden md:block"
+                className="pointer-events-none fixed top-0 left-0 z-10 w-80 h-80 opacity-25 blur-2xl hidden md:block"
                 style={{
                     background: "radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(59, 130, 246, 0.3) 50%, transparent 70%)",
                     mixBlendMode: "screen",
@@ -90,7 +90,7 @@ export default function MouseFollower() {
             {/* Tertiary Indigo gradient - smallest and fastest */}
             <div
                 ref={follower3Ref}
-                className="pointer-events-none fixed top-0 left-0 z-30 w-48 h-48 opacity-20 blur-xl hidden md:block"
+                className="pointer-events-none fixed top-0 left-0 z-10 w-48 h-48 opacity-20 blur-xl hidden md:block"
                 style={{
                     background: "radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, rgba(129, 140, 248, 0.4) 50%, transparent 70%)",
                     mixBlendMode: "screen",

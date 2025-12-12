@@ -71,7 +71,7 @@ export default function HeroSection() {
             <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-float gpu-accelerated animate-delay-500" />
 
             {/* Content */}
-            <div className="max-w-5xl mx-auto text-center space-y-8 z-10">
+            <div className="max-w-5xl mx-auto text-center space-y-8 z-20 relative">
                 <div className="overflow-hidden">
                     <h1 className="hero-title font-display font-bold gradient-text leading-tight">
                         TCHAMDJA Luc Mazangui

@@ -18,6 +18,7 @@ interface NavItem {
 const navItems: NavItem[] = [
     { id: "hero", label: "Accueil", icon: <Home className="w-4 h-4" /> },
     { id: "projects", label: "Projets", icon: <Briefcase className="w-4 h-4" /> },
+    { id: "github", label: "GitHub", icon: <Code className="w-4 h-4" /> },
     { id: "education", label: "Formation", icon: <GraduationCap className="w-4 h-4" /> },
     { id: "skills", label: "Compétences", icon: <Code className="w-4 h-4" /> },
     { id: "certifications", label: "Certifications", icon: <Award className="w-4 h-4" /> },
