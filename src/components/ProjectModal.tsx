@@ -192,22 +192,24 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                             <span>Voir le Projet</span>
                         </a>
                     )}
-                    <a
-                        href={`https://github.com/tchluc/${project.title.toLowerCase().replace(/\s+/g, '-')}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={cn(
-                            "inline-flex items-center gap-2",
-                            "px-6 py-3 rounded-full",
-                            "glass-card text-foreground font-semibold",
-                            "hover:bg-primary/10 border border-primary/20",
-                            "transition-all duration-300",
-                            "hover:scale-105"
-                        )}
-                    >
-                        <Github className="w-5 h-5" />
-                        <span>Code Source</span>
-                    </a>
+                    {project.githubUrl && (
+                        <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={cn(
+                                "inline-flex items-center gap-2",
+                                "px-6 py-3 rounded-full",
+                                "glass-card text-foreground font-semibold",
+                                "hover:bg-primary/10 border border-primary/20",
+                                "transition-all duration-300",
+                                "hover:scale-105"
+                            )}
+                        >
+                            <Github className="w-5 h-5" />
+                            <span>Code Source</span>
+                        </a>
+                    )}
                 </div>
             </div>
         </div>

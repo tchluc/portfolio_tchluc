@@ -6,11 +6,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { projects } from "@/data/portfolio";
 import { cn } from "@/lib/cn";
-import { ExternalLink, Filter, Eye } from "lucide-react";
+import { ExternalLink, Filter, Eye, ChevronDown, ChevronUp } from "lucide-react";
 import { Project } from "@/types";
 import ProjectModal from "@/components/ProjectModal";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Number of filters to show initially
+const INITIAL_FILTER_COUNT = 5;
 
 /**
  * ProjectsSection Component
@@ -24,6 +27,7 @@ export default function ProjectsSection() {
     const [activeFilter, setActiveFilter] = useState<string>("all");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showAllFilters, setShowAllFilters] = useState(false);
 
     // Extract unique tags from all projects
     const allTags = useMemo(() => {
@@ -33,6 +37,10 @@ export default function ProjectsSection() {
         });
         return ["all", ...Array.from(tags)];
     }, []);
+
+    // Get visible filters based on showAllFilters state
+    const visibleTags = showAllFilters ? allTags : allTags.slice(0, INITIAL_FILTER_COUNT + 1);
+    const hasMoreFilters = allTags.length > INITIAL_FILTER_COUNT + 1;
 
     // Filter projects based on active filter
     const filteredProjects = useMemo(() => {
@@ -115,17 +123,17 @@ export default function ProjectsSection() {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                         <div>
                             <h2 className="text-4xl md:text-6xl font-display font-bold text-glow">
-                                Featured Projects
+                                Projets Réalisés
                             </h2>
                             <p className="mt-2 text-foreground/60">
-                                Scroll horizontally to explore
+                                Scrollez horizontalement pour explorer
                             </p>
                         </div>
 
                         {/* Filter buttons */}
                         <div className="flex items-center gap-2 flex-wrap">
                             <Filter className="w-5 h-5 text-primary mr-1" />
-                            {allTags.slice(0, 6).map((tag) => (
+                            {visibleTags.map((tag) => (
                                 <button
                                     key={tag}
                                     onClick={() => setActiveFilter(tag)}
@@ -141,6 +149,30 @@ export default function ProjectsSection() {
                                     {tag === "all" ? "Tous" : tag}
                                 </button>
                             ))}
+                            {hasMoreFilters && (
+                                <button
+                                    onClick={() => setShowAllFilters(!showAllFilters)}
+                                    className={cn(
+                                        "px-3 py-2 text-sm font-medium rounded-full",
+                                        "transition-all duration-300",
+                                        "glass-card text-primary border border-primary/20",
+                                        "hover:border-primary/50 hover:bg-primary/10",
+                                        "flex items-center gap-1"
+                                    )}
+                                >
+                                    {showAllFilters ? (
+                                        <>
+                                            <span>Moins</span>
+                                            <ChevronUp className="w-4 h-4" />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <span>Plus</span>
+                                            <ChevronDown className="w-4 h-4" />
+                                        </>
+                                    )}
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

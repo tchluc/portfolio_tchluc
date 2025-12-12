@@ -9,6 +9,7 @@ export const projects: Project[] = [
         image: "/images/projects/ecommerce.jpg",
         tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL"],
         link: "https://example.com",
+        githubUrl: "https://github.com/tchluc/e-commerce-platform",
     },
     {
         id: 2,
@@ -17,6 +18,7 @@ export const projects: Project[] = [
         image: "/images/projects/dashboard.jpg",
         tags: ["React", "D3.js", "WebSockets", "Node.js"],
         link: "https://example.com",
+        githubUrl: "https://github.com/tchluc/social-media-dashboard",
     },
     {
         id: 3,
@@ -25,6 +27,7 @@ export const projects: Project[] = [
         image: "/images/projects/3d-portfolio.jpg",
         tags: ["Three.js", "GSAP", "WebGL", "Blender"],
         link: "https://example.com",
+        githubUrl: "https://github.com/tchluc/3d-portfolio-site",
     },
     {
         id: 4,
@@ -33,6 +36,7 @@ export const projects: Project[] = [
         image: "/images/projects/ai-content.jpg",
         tags: ["OpenAI", "Python", "FastAPI", "React"],
         link: "https://example.com",
+        githubUrl: "https://github.com/tchluc/ai-content-generator",
     },
 ];
 
