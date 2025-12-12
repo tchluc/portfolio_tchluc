@@ -2,15 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
-import { useGSAP } from "@gsap/react"; // Correction: import depuis le bon package
+import { useGSAP } from "@/hooks/useGSAP";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Home, Briefcase, GraduationCap, Code, Award, Mail } from "lucide-react";
 
-// Enregistrer le plugin une seule fois, en dehors du composant
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
+gsap.registerPlugin(ScrollTrigger);
 
 interface NavItem {
     id: string;
@@ -21,7 +18,6 @@ interface NavItem {
 const navItems: NavItem[] = [
     { id: "hero", label: "Accueil", icon: <Home className="w-4 h-4" /> },
     { id: "projects", label: "Projets", icon: <Briefcase className="w-4 h-4" /> },
-    { id:  "github", label: "GitHub", icon: <Code className="w-4 h-4" /> },
     { id: "education", label: "Formation", icon: <GraduationCap className="w-4 h-4" /> },
     { id: "skills", label: "Compétences", icon: <Code className="w-4 h-4" /> },
     { id: "certifications", label: "Certifications", icon: <Award className="w-4 h-4" /> },
@@ -44,6 +40,7 @@ export default function Navigation() {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
 
+            // Show on scroll up, hide on scroll down (after initial threshold)
             if (currentScrollY > 100) {
                 setIsVisible(currentScrollY < lastScrollY.current);
             } else {
@@ -59,16 +56,20 @@ export default function Navigation() {
 
     // GSAP animation for nav appearance
     useGSAP(() => {
-        if (navRef.current) {
-            gsap.from(navRef.current, {
+        gsap.fromTo(navRef.current, 
+            {
                 y: -100,
                 opacity: 0,
+            },
+            {
+                y: 0,
+                opacity: 1,
                 duration: 0.8,
                 ease: "power3.out",
                 delay: 0.5,
-            });
-        }
-    }, { scope: navRef }); // Correction: dependencies array retirée car inutile ici
+            }
+        );
+    }, { scope: navRef });
 
     // Track active section based on scroll position
     useEffect(() => {
@@ -101,7 +102,7 @@ export default function Navigation() {
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            element. scrollIntoView({ behavior: "smooth" });
+            element.scrollIntoView({ behavior: "smooth" });
         }
     };
 
@@ -111,8 +112,18 @@ export default function Navigation() {
             className={cn(
                 "fixed top-6 left-1/2 -translate-x-1/2 z-50",
                 "transition-all duration-500 ease-out",
-                isVisible ? "translate-y-0 opacity-100" :  "-translate-y-24 opacity-0"
+                isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"
             )}
+            style={{
+                // Inline styles as fallback when Tailwind CSS fails to load
+                position: 'fixed',
+                top: '1.5rem',
+                left: '50%',
+                transform: `translateX(-50%) translateY(${isVisible ? '0' : '-6rem'})`,
+                zIndex: 50,
+                opacity: isVisible ? 1 : 0,
+                transition: 'all 0.5s ease-out',
+            }}
         >
             <div
                 className={cn(
@@ -133,13 +144,12 @@ export default function Navigation() {
                                 ? "text-white"
                                 : "text-foreground/60 hover:text-foreground"
                         )}
-                        aria-current={activeSection === item. id ?  "page" : undefined}
                     >
                         {/* Active background */}
                         {activeSection === item.id && (
                             <span
                                 className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse-glow"
-                                aria-hidden="true"
+                                style={{ zIndex: -1 }}
                             />
                         )}
 
