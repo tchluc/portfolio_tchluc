@@ -45,7 +45,7 @@ export default function ProjectsSection() {
     // Filter projects based on active filter
     const filteredProjects = useMemo(() => {
         if (activeFilter === "all") return projects;
-        return projects.filter((project) => 
+        return projects.filter((project) =>
             project.tags.some((tag) => tag.toLowerCase() === activeFilter.toLowerCase())
         );
     }, [activeFilter]);
@@ -119,28 +119,28 @@ export default function ProjectsSection() {
                 className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
             >
                 {/* Section title and filters */}
-                <div className="absolute top-12 left-8 md:left-16 z-10 right-8 md:right-16">
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div className="absolute top-8 sm:top-12 left-4 sm:left-8 md:left-16 z-10 right-4 sm:right-8 md:right-16">
+                    <div className="flex flex-col gap-4">
                         <div>
-                            <h2 className="text-4xl md:text-6xl font-display font-bold text-glow">
+                            <h2 className="text-2xl sm:text-4xl md:text-6xl font-display font-bold text-glow">
                                 Projets Réalisés
                             </h2>
-                            <p className="mt-2 text-foreground/60">
+                            <p className="mt-2 text-foreground/60 text-sm sm:text-base">
                                 Scrollez horizontalement pour explorer
                             </p>
                         </div>
 
                         {/* Filter buttons */}
-                        <div className="flex items-center gap-2 flex-wrap">
-                            <Filter className="w-5 h-5 text-primary mr-1" />
+                        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                            <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-primary mr-1 flex-shrink-0" />
                             {visibleTags.map((tag) => (
                                 <button
                                     key={tag}
                                     onClick={() => setActiveFilter(tag)}
                                     className={cn(
-                                        "px-4 py-2 text-sm font-medium rounded-full",
+                                        "px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full",
                                         "transition-all duration-300",
-                                        "border",
+                                        "border flex-shrink-0",
                                         activeFilter === tag
                                             ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
                                             : "glass-card text-foreground/70 border-primary/20 hover:border-primary/50 hover:text-primary"
@@ -153,11 +153,11 @@ export default function ProjectsSection() {
                                 <button
                                     onClick={() => setShowAllFilters(!showAllFilters)}
                                     className={cn(
-                                        "px-3 py-2 text-sm font-medium rounded-full",
+                                        "px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full",
                                         "transition-all duration-300",
                                         "glass-card text-primary border border-primary/20",
                                         "hover:border-primary/50 hover:bg-primary/10",
-                                        "flex items-center gap-1"
+                                        "flex items-center gap-1 flex-shrink-0"
                                     )}
                                 >
                                     {showAllFilters ? (

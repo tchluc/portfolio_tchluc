@@ -73,19 +73,19 @@ export default function HeroSection() {
             {/* Content */}
             <div className="max-w-5xl mx-auto text-center space-y-8 z-20 relative">
                 <div className="overflow-hidden">
-                    <h1 className="hero-title font-display font-bold gradient-text leading-tight">
+                    <h1 className="hero-title font-display font-bold gradient-text leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                         TCHAMDJA Luc Mazangui
                     </h1>
                 </div>
 
                 <div className="overflow-hidden">
-                    <h2 className="hero-title text-2xl md:text-4xl text-foreground/80 font-semibold">
+                    <h2 className="hero-title text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground/80 font-semibold">
                         Intelligence Artificielle & Data Science
                     </h2>
                 </div>
 
                 <div className="overflow-hidden">
-                    <p className="hero-subtitle max-w-2xl mx-auto text-lg md:text-xl text-foreground/60 leading-relaxed">
+                    <p className="hero-subtitle max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-foreground/60 leading-relaxed px-2">
                         Ingénieur passionné par l&apos;IA et la Data Science avec une solide expertise
                         en machine learning, analyse de données et développement full-stack
                     </p>

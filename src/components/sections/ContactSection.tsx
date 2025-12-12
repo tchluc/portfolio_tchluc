@@ -94,11 +94,11 @@ export default function ContactSection() {
 
             <div className="max-w-7xl mx-auto w-full relative z-10">
                 {/* Title */}
-                <div className="text-center mb-16 contact-title">
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold text-glow mb-6">
+                <div className="text-center mb-12 sm:mb-16 contact-title">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold text-glow mb-4 sm:mb-6">
                         Travaillons Ensemble
                     </h2>
-                    <p className="text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed px-2">
                         Vous avez un projet innovant ? Discutons de la façon dont je peux contribuer
                         à votre réussite avec mes compétences en IA et Data Science.
                     </p>
@@ -126,7 +126,7 @@ export default function ContactSection() {
                                 "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
                                 link.bgGradient
                             )} />
-                            
+
                             <div className="flex flex-col items-center text-center space-y-4 relative z-10">
                                 <div className={cn(
                                     "text-primary transition-all duration-300",

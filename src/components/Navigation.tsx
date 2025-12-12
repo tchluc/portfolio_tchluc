@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 import { useGSAP } from "@/hooks/useGSAP";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Home, Briefcase, GraduationCap, Code, Award, Mail } from "lucide-react";
+import { Home, Briefcase, GraduationCap, Code, Award, Mail, Github } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +19,7 @@ const navItems: NavItem[] = [
     { id: "hero", label: "Accueil", icon: <Home className="w-4 h-4" /> },
     { id: "projects", label: "Projets", icon: <Briefcase className="w-4 h-4" /> },
     { id: "education", label: "Formation", icon: <GraduationCap className="w-4 h-4" /> },
+    { id: "github", label: "GitHub", icon: <Github className="w-4 h-4" /> },
     { id: "skills", label: "Compétences", icon: <Code className="w-4 h-4" /> },
     { id: "certifications", label: "Certifications", icon: <Award className="w-4 h-4" /> },
     { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> },
@@ -56,7 +57,7 @@ export default function Navigation() {
 
     // GSAP animation for nav appearance
     useGSAP(() => {
-        gsap.fromTo(navRef.current, 
+        gsap.fromTo(navRef.current,
             {
                 y: -100,
                 opacity: 0,
@@ -127,9 +128,10 @@ export default function Navigation() {
         >
             <div
                 className={cn(
-                    "glass-card-strong px-2 py-2 rounded-full",
-                    "flex items-center gap-1",
-                    "shadow-lg shadow-primary/10"
+                    "glass-card-strong px-1 sm:px-2 py-1.5 sm:py-2 rounded-full",
+                    "flex items-center gap-0.5 sm:gap-1",
+                    "shadow-lg shadow-primary/10",
+                    "max-w-[95vw] overflow-x-auto scrollbar-hide"
                 )}
             >
                 {navItems.map((item) => (
@@ -137,9 +139,10 @@ export default function Navigation() {
                         key={item.id}
                         onClick={() => scrollToSection(item.id)}
                         className={cn(
-                            "relative flex items-center gap-2 px-4 py-2.5 rounded-full",
+                            "relative flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-full",
                             "transition-all duration-300",
-                            "text-sm font-medium",
+                            "text-xs sm:text-sm font-medium",
+                            "flex-shrink-0",
                             activeSection === item.id
                                 ? "text-white"
                                 : "text-foreground/60 hover:text-foreground"

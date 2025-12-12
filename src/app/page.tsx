@@ -2,11 +2,11 @@
 
 import HeroSection from "@/components/sections/HeroSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
-import GitHubRepos from "@/components/sections/GitHubRepos";
 import EducationTimeline from "@/components/sections/EducationTimeline";
 import SkillsMindMap from "@/components/sections/SkillsMindMap";
 import CertificationsSection from "@/components/sections/CertificationsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import GitHubRepos from "@/components/sections/GitHubRepos";
 import Footer from "@/components/Footer";
 import MouseFollower from "@/components/MouseFollower";
 import ParticleBackground from "@/components/ParticleBackground";
@@ -41,4 +41,3 @@ export default function Home() {
         </>
     );
 }
-

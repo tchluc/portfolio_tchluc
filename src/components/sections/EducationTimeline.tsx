@@ -95,11 +95,11 @@ export default function EducationTimeline() {
             className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
         >
             {/* Section title */}
-            <div className="absolute top-12 left-8 md:left-16 z-20">
-                <h2 className="text-4xl md:text-6xl font-display font-bold text-glow">
+            <div className="absolute top-8 sm:top-12 left-4 sm:left-8 md:left-16 z-20">
+                <h2 className="text-2xl sm:text-4xl md:text-6xl font-display font-bold text-glow">
                     Parcours Académique
                 </h2>
-                <p className="mt-2 text-foreground/60 text-lg">
+                <p className="mt-2 text-foreground/60 text-sm sm:text-lg">
                     Scroll horizontalement pour découvrir mon parcours
                 </p>
             </div>
@@ -141,7 +141,7 @@ export default function EducationTimeline() {
                     <div
                         key={item.id}
                         className={cn(
-                            "flex-shrink-0 w-[85vw] md:w-[70vw] lg:w-[60vw]",
+                            "flex-shrink-0 w-[90vw] sm:w-[85vw] md:w-[70vw] lg:w-[60vw]",
                             "relative group"
                         )}
                     >

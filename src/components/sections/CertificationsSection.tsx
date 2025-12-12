@@ -44,11 +44,11 @@ export default function CertificationsSection() {
             className="relative min-h-screen px-4 md:px-16 py-32 bg-light-bg dark:bg-dark-bg"
         >
             {/* Section title */}
-            <div className="max-w-7xl mx-auto mb-16 text-center">
-                <h2 className="text-4xl md:text-6xl font-display font-bold text-glow mb-6">
+            <div className="max-w-7xl mx-auto mb-12 sm:mb-16 text-center">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-glow mb-4 sm:mb-6">
                     Certifications Professionnelles
                 </h2>
-                <p className="text-foreground/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+                <p className="text-foreground/60 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed px-2">
                     Mes certifications validées par des organisations reconnues.
                     Survolez les cartes pour découvrir les compétences acquises.
                 </p>
@@ -60,7 +60,7 @@ export default function CertificationsSection() {
                     {certifications.map((cert) => (
                         <div
                             key={cert.id}
-                            className="cert-card h-[450px]"
+                            className="cert-card h-[380px] sm:h-[420px] md:h-[450px]"
                             style={{ perspective: "1000px" }}
                         >
                             {/* Flip container */}

@@ -99,7 +99,7 @@ export default function SkillsRoadmap() {
         >
             {/* Section title */}
             <div className="max-w-7xl mx-auto mb-16 text-center">
-                <h2 className="text-4xl md:text-6xl font-display font-bold text-glow mb-6">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-bold text-glow mb-6">
                     Compétences Techniques
                 </h2>
                 <p className="text-foreground/60 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
@@ -109,15 +109,15 @@ export default function SkillsRoadmap() {
             </div>
 
             {/* Radar Chart - Overview */}
-            <div className="max-w-7xl mx-auto mb-16">
-                <div className="radar-chart-container max-w-md mx-auto">
+            <div className="max-w-7xl mx-auto mb-12 md:mb-16">
+                <div className="radar-chart-container max-w-[280px] sm:max-w-sm md:max-w-md mx-auto">
                     <SkillsRadarChart />
                 </div>
             </div>
 
             {/* Roadmap grid */}
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8 lg:gap-12">
                     {parentSkills.map((parent) => {
                         const children = childSkills.filter(
                             (child) => child.parentId === parent.id

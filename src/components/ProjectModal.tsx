@@ -102,8 +102,8 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 ref={contentRef}
                 className={cn(
                     "relative max-w-3xl w-full max-h-[90vh] overflow-y-auto",
-                    "glass-card-strong rounded-3xl",
-                    "p-6 md:p-10",
+                    "glass-card-strong rounded-2xl sm:rounded-3xl",
+                    "p-4 sm:p-6 md:p-10",
                     "border-2 border-primary/20"
                 )}
             >
