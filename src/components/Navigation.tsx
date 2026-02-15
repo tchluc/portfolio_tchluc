@@ -2,46 +2,39 @@
 
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/cn";
-import { useGSAP } from "@/hooks/useGSAP";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Home, Briefcase, GraduationCap, Code, Award, Mail, Github } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
+import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 interface NavItem {
     id: string;
     label: string;
-    icon: React.ReactNode;
 }
 
 const navItems: NavItem[] = [
-    { id: "hero", label: "Accueil", icon: <Home className="w-4 h-4" /> },
-    { id: "projects", label: "Projets", icon: <Briefcase className="w-4 h-4" /> },
-    { id: "education", label: "Formation", icon: <GraduationCap className="w-4 h-4" /> },
-    { id: "github", label: "GitHub", icon: <Github className="w-4 h-4" /> },
-    { id: "skills", label: "Compétences", icon: <Code className="w-4 h-4" /> },
-    { id: "certifications", label: "Certifications", icon: <Award className="w-4 h-4" /> },
-    { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> },
+    { id: "hero", label: "Accueil" },
+    { id: "projects", label: "Projets" },
+    { id: "github", label: "GitHub" },
+    { id: "education", label: "Formation" },
+    { id: "skills", label: "Compétences" },
+    { id: "certifications", label: "Certifications" },
+    { id: "contact", label: "Contact" },
 ];
 
 /**
- * Navigation Component
- * Floating glassmorphism navigation with scroll-based visibility
- * Shows/hides based on scroll direction
+ * Navigation Component - Minimalist & Responsive
+ * Clean navigation with mobile menu and theme toggle
  */
 export default function Navigation() {
     const [activeSection, setActiveSection] = useState("hero");
     const [isVisible, setIsVisible] = useState(true);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const lastScrollY = useRef(0);
-    const navRef = useRef<HTMLElement>(null);
 
     // Handle scroll visibility
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
 
-            // Show on scroll up, hide on scroll down (after initial threshold)
             if (currentScrollY > 100) {
                 setIsVisible(currentScrollY < lastScrollY.current);
             } else {
@@ -55,24 +48,7 @@ export default function Navigation() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // GSAP animation for nav appearance
-    useGSAP(() => {
-        gsap.fromTo(navRef.current,
-            {
-                y: -100,
-                opacity: 0,
-            },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: "power3.out",
-                delay: 0.5,
-            }
-        );
-    }, { scope: navRef });
-
-    // Track active section based on scroll position
+    // Track active section
     useEffect(() => {
         const observers: IntersectionObserver[] = [];
 
@@ -103,64 +79,104 @@ export default function Navigation() {
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            const navHeight = 80;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
+
+            setIsMobileMenuOpen(false);
         }
     };
 
     return (
-        <nav
-            ref={navRef}
-            className={cn(
-                "fixed top-6 left-1/2 -translate-x-1/2 z-50",
-                "transition-all duration-500 ease-out",
-                isVisible ? "translate-y-0 opacity-100" : "-translate-y-24 opacity-0"
-            )}
-            style={{
-                // Inline styles as fallback when Tailwind CSS fails to load
-                position: 'fixed',
-                top: '1.5rem',
-                left: '50%',
-                transform: `translateX(-50%) translateY(${isVisible ? '0' : '-6rem'})`,
-                zIndex: 50,
-                opacity: isVisible ? 1 : 0,
-                transition: 'all 0.5s ease-out',
-            }}
-        >
-            <div
+        <>
+            {/* Desktop & Mobile Navigation */}
+            <nav
                 className={cn(
-                    "glass-card-strong px-1 sm:px-2 py-1.5 sm:py-2 rounded-full",
-                    "flex items-center gap-0.5 sm:gap-1",
-                    "shadow-lg shadow-primary/10",
-                    "max-w-[95vw] overflow-x-auto scrollbar-hide"
+                    "fixed top-0 left-0 right-0 z-50",
+                    "bg-light-bg/95 dark:bg-dark-bg/95 backdrop-blur-sm",
+                    "border-b border-light-border dark:border-dark-border",
+                    "transition-transform duration-300",
+                    isVisible ? "translate-y-0" : "-translate-y-full"
                 )}
             >
-                {navItems.map((item) => (
-                    <button
-                        key={item.id}
-                        onClick={() => scrollToSection(item.id)}
-                        className={cn(
-                            "relative flex items-center gap-1 sm:gap-2 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-full",
-                            "transition-all duration-300",
-                            "text-xs sm:text-sm font-medium",
-                            "flex-shrink-0",
-                            activeSection === item.id
-                                ? "text-white"
-                                : "text-foreground/60 hover:text-foreground"
-                        )}
-                    >
-                        {/* Active background */}
-                        {activeSection === item.id && (
-                            <span
-                                className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent animate-pulse-glow"
-                                style={{ zIndex: -1 }}
-                            />
-                        )}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-16">
+                        {/* Logo/Name */}
+                        <button
+                            onClick={() => scrollToSection("hero")}
+                            className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+                        >
+                            Luc Tchamdja
+                        </button>
 
-                        <span className="relative z-10">{item.icon}</span>
-                        <span className="relative z-10 hidden md:inline">{item.label}</span>
-                    </button>
-                ))}
-            </div>
-        </nav>
+                        {/* Desktop Navigation */}
+                        <div className="hidden md:flex items-center gap-1">
+                            {navItems.map((item) => (
+                                <button
+                                    key={item.id}
+                                    onClick={() => scrollToSection(item.id)}
+                                    className={cn(
+                                        "px-4 py-2 rounded-md text-sm font-medium transition-colors",
+                                        activeSection === item.id
+                                            ? "text-primary bg-primary/10"
+                                            : "text-muted hover:text-foreground hover:bg-surface"
+                                    )}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Actions (Theme Toggle + Mobile Menu) */}
+                        <div className="flex items-center gap-2">
+                            <ThemeToggle />
+
+                            {/* Mobile Menu Button */}
+                            <button
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
+                                aria-label="Toggle menu"
+                            >
+                                {isMobileMenuOpen ? (
+                                    <X className="w-6 h-6" />
+                                ) : (
+                                    <Menu className="w-6 h-6" />
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden border-t border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg">
+                        <div className="px-4 py-4 space-y-1">
+                            {navItems.map((item) => (
+                                <button
+                                    key={item.id}
+                                    onClick={() => scrollToSection(item.id)}
+                                    className={cn(
+                                        "w-full text-left px-4 py-3 rounded-md text-sm font-medium transition-colors",
+                                        activeSection === item.id
+                                            ? "text-primary bg-primary/10"
+                                            : "text-muted hover:text-foreground hover:bg-surface"
+                                    )}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+            </nav>
+
+            {/* Spacer to prevent content from going under fixed nav */}
+            <div className="h-16" />
+        </>
     );
 }

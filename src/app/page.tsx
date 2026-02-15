@@ -8,22 +8,15 @@ import CertificationsSection from "@/components/sections/CertificationsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import GitHubRepos from "@/components/sections/GitHubRepos";
 import Footer from "@/components/Footer";
-import MouseFollower from "@/components/MouseFollower";
-import ParticleBackground from "@/components/ParticleBackground";
 import Navigation from "@/components/Navigation";
 
 /**
- * Home Page - Portfolio One-Page Layout
- * Immersive scrollytelling experience with GSAP animations
- * Features: particles, mouse tracking, smooth scroll, glassmorphism
+ * Home Page - Minimalist Portfolio Layout
+ * Clean, content-focused design with subtle animations
  */
 export default function Home() {
     return (
         <>
-            {/* Background effects */}
-            <ParticleBackground />
-            <MouseFollower />
-
             {/* Navigation */}
             <Navigation />
 

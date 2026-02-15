@@ -4,55 +4,25 @@ import { useRef } from "react";
 import { useGSAP } from "@/hooks/useGSAP";
 import gsap from "gsap";
 import { cn } from "@/lib/cn";
-import { Download, Mail, ArrowRight } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 
 /**
- * HeroSection Component
- * Landing section with animated reveal and gradient text
+ * HeroSection Component - Minimalist
+ * Clean landing section with simple fade-in animations
  */
 export default function HeroSection() {
     const containerRef = useRef<HTMLElement>(null);
 
     useGSAP(
         () => {
-            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-            // Animated reveal sequence
-            tl.from(".hero-title", {
-                y: 100,
+            // Simple fade-in animation
+            gsap.from(".hero-element", {
+                y: 20,
                 opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-            })
-                .from(
-                    ".hero-subtitle",
-                    {
-                        y: 50,
-                        opacity: 0,
-                        duration: 0.8,
-                    },
-                    "-=0.5"
-                )
-                .from(
-                    ".hero-cta",
-                    {
-                        scale: 0.8,
-                        opacity: 0,
-                        duration: 0.6,
-                        stagger: 0.1,
-                    },
-                    "-=0.3"
-                )
-                .from(
-                    ".hero-stats",
-                    {
-                        y: 30,
-                        opacity: 0,
-                        duration: 0.6,
-                        stagger: 0.1,
-                    },
-                    "-=0.2"
-                );
+                duration: 0.6,
+                stagger: 0.15,
+                ease: "power2.out",
+            });
         },
         { scope: containerRef }
     );
@@ -61,97 +31,89 @@ export default function HeroSection() {
         <section
             id="hero"
             ref={containerRef}
-            className="relative flex items-center justify-center min-h-screen px-4 md:px-8 overflow-hidden"
+            className="relative flex items-center justify-center min-h-screen px-4 sm:px-6 md:px-8 lg:px-12 py-20"
         >
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-light-bg via-light-surface to-light-bg dark:from-dark-bg dark:via-dark-surface dark:to-dark-bg -z-10" />
-
-            {/* Animated circles */}
-            <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float gpu-accelerated" />
-            <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-float gpu-accelerated animate-delay-500" />
-
             {/* Content */}
-            <div className="max-w-5xl mx-auto text-center space-y-8 z-20 relative">
-                <div className="overflow-hidden">
-                    <h1 className="hero-title font-display font-bold gradient-text leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
+            <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-8">
+                <div className="hero-element">
+                    <h1 className="font-bold text-foreground leading-tight tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
                         TCHAMDJA Luc Mazangui
                     </h1>
                 </div>
 
-                <div className="overflow-hidden">
-                    <h2 className="hero-title text-xl sm:text-2xl md:text-3xl lg:text-4xl text-foreground/80 font-semibold">
+                <div className="hero-element">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-muted font-medium">
                         Intelligence Artificielle & Data Science
                     </h2>
                 </div>
 
-                <div className="overflow-hidden">
-                    <p className="hero-subtitle max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-foreground/60 leading-relaxed px-2">
+                <div className="hero-element">
+                    <p className="max-w-2xl mx-auto text-base sm:text-lg md:text-xl text-muted leading-relaxed px-4">
                         Ingénieur passionné par l&apos;IA et la Data Science avec une solide expertise
                         en machine learning, analyse de données et développement full-stack
                     </p>
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+                <div className="hero-element flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                     <a
                         href="#contact"
                         className={cn(
-                            "group inline-flex items-center gap-3",
-                            "px-8 py-4 rounded-full",
-                            "bg-primary text-white font-semibold text-lg",
-                            "hover-glow pulse-border",
-                            "transition-all duration-300",
-                            "will-change-transform"
+                            "inline-flex items-center gap-2",
+                            "px-8 py-3 rounded-md",
+                            "bg-primary text-white font-semibold",
+                            "hover:opacity-90 hover:-translate-y-0.5",
+                            "transition-all duration-200"
                         )}
                     >
                         <Mail className="w-5 h-5" />
                         <span>Me Contacter</span>
-                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </a>
                     <a
                         href="/cv.pdf"
                         download
                         className={cn(
-                            "group inline-flex items-center gap-3",
-                            "px-8 py-4 rounded-full",
-                            "glass-card text-foreground font-semibold text-lg",
-                            "hover:bg-primary/10 hover:scale-105",
-                            "transition-all duration-300",
-                            "will-change-transform"
+                            "inline-flex items-center gap-2",
+                            "px-8 py-3 rounded-md",
+                            "border border-border bg-surface text-foreground font-semibold",
+                            "hover:border-primary",
+                            "transition-all duration-200"
                         )}
                     >
-                        <Download className="w-5 h-5 group-hover:animate-bounce" />
+                        <Download className="w-5 h-5" />
                         <span>Télécharger CV</span>
                     </a>
                 </div>
 
-                {/* Stats/Highlights */}
-                <div className="hero-stats grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 pt-12 max-w-4xl mx-auto">
-                    {[
-                        { label: "Projets Réalisés", value: "20+" },
-                        { label: "Technologies", value: "15+" },
-                        { label: "Certifications", value: "4+" },
-                        { label: "Années d&apos;Expérience", value: "3+" },
-                    ].map((stat, index) => (
-                        <div
-                            key={index}
-                            className="glass-card p-4 md:p-6 rounded-2xl hover:scale-105 transition-transform duration-300 will-change-transform"
-                        >
-                            <div className="text-2xl md:text-3xl font-bold text-primary mb-1">
-                                {stat.value}
+                {/* Stats */}
+                <div className="hero-element">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-3xl mx-auto px-4">
+                        {[
+                            { label: "Projets Réalisés", value: "20+" },
+                            { label: "Technologies", value: "15+" },
+                            { label: "Certifications", value: "4+" },
+                            { label: "Années d'Expérience", value: "3+" },
+                        ].map((stat, index) => (
+                            <div
+                                key={index}
+                                className="minimal-card text-center p-4 sm:p-6"
+                            >
+                                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-1">
+                                    {stat.value}
+                                </div>
+                                <div className="text-[10px] sm:text-xs md:text-sm text-muted uppercase tracking-wider">
+                                    {stat.label}
+                                </div>
                             </div>
-                            <div className="text-sm md:text-base text-foreground/60">
-                                {stat.label}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer">
-                <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2 hover:border-primary transition-colors">
-                    <div className="w-1 h-3 bg-primary rounded-full animate-bounce" />
+            {/* Minimal scroll indicator */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+                <div className="w-6 h-10 border border-border rounded-full flex items-start justify-center p-2">
+                    <div className="w-1 h-2 bg-foreground rounded-full animate-bounce" />
                 </div>
             </div>
         </section>

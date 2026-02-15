@@ -1,29 +1,20 @@
 "use client";
 
-import { useRef, useState, useMemo } from "react";
-import { useGSAP } from "@/hooks/useGSAP";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useState, useMemo } from "react";
 import { projects } from "@/data/portfolio";
 import { cn } from "@/lib/cn";
 import { ExternalLink, Filter, Eye, ChevronDown, ChevronUp } from "lucide-react";
 import { Project } from "@/types";
 import ProjectModal from "@/components/ProjectModal";
 
-gsap.registerPlugin(ScrollTrigger);
-
 // Number of filters to show initially
 const INITIAL_FILTER_COUNT = 5;
 
 /**
- * ProjectsSection Component
- * Horizontal scroll gallery with parallax effects
- * Features: filters by technology, modal for detailed view
- * Triggered by vertical scroll using GSAP ScrollTrigger
+ * ProjectsSection Component - Minimalist
+ * Simple vertical grid with filters
  */
 export default function ProjectsSection() {
-    const containerRef = useRef<HTMLElement>(null);
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
     const [activeFilter, setActiveFilter] = useState<string>("all");
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,57 +41,6 @@ export default function ProjectsSection() {
         );
     }, [activeFilter]);
 
-    useGSAP(
-        () => {
-            const container = scrollContainerRef.current;
-            if (!container) return;
-
-            // Calculate total scroll width
-            const scrollWidth = container.scrollWidth - window.innerWidth;
-
-            // Horizontal scroll animation
-            gsap.to(container, {
-                x: -scrollWidth,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: () => `+=${scrollWidth}`,
-                    scrub: 1,
-                    pin: true,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                },
-            });
-
-            // Parallax on images - slower than cards
-            gsap.to(".project-image", {
-                x: -100,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: () => `+=${scrollWidth}`,
-                    scrub: 1,
-                },
-            });
-
-            // Scale animation on titles
-            gsap.to(".project-title", {
-                scale: 0.95,
-                opacity: 0.7,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: () => `+=${scrollWidth}`,
-                    scrub: 1,
-                },
-            });
-        },
-        { scope: containerRef, dependencies: [filteredProjects] }
-    );
-
     const handleOpenModal = (project: Project) => {
         setSelectedProject(project);
         setIsModalOpen(true);
@@ -115,35 +55,32 @@ export default function ProjectsSection() {
         <>
             <section
                 id="projects"
-                ref={containerRef}
-                className="relative min-h-screen overflow-hidden bg-light-surface dark:bg-dark-surface"
+                className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8"
             >
-                {/* Section title and filters */}
-                <div className="absolute top-8 sm:top-12 left-4 sm:left-8 md:left-16 z-10 right-4 sm:right-8 md:right-16">
-                    <div className="flex flex-col gap-4">
-                        <div>
-                            <h2 className="text-2xl sm:text-4xl md:text-6xl font-display font-bold text-glow">
-                                Projets Réalisés
-                            </h2>
-                            <p className="mt-2 text-foreground/60 text-sm sm:text-base">
-                                Scrollez horizontalement pour explorer
-                            </p>
-                        </div>
+                <div className="max-w-7xl mx-auto">
+                    {/* Section title and filters */}
+                    <div className="mb-12">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
+                            Projets Réalisés
+                        </h2>
+                        <p className="text-muted text-base">
+                            Découvrez mes réalisations
+                        </p>
 
                         {/* Filter buttons */}
-                        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                            <Filter className="w-4 h-4 sm:w-5 sm:h-5 text-primary mr-1 flex-shrink-0" />
+                        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide mt-6">
+                            <Filter className="w-4 h-4 text-primary mr-1 flex-shrink-0" />
                             {visibleTags.map((tag) => (
                                 <button
                                     key={tag}
                                     onClick={() => setActiveFilter(tag)}
                                     className={cn(
                                         "px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full",
-                                        "transition-all duration-300",
+                                        "transition-all duration-200",
                                         "border flex-shrink-0",
                                         activeFilter === tag
-                                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
-                                            : "glass-card text-foreground/70 border-primary/20 hover:border-primary/50 hover:text-primary"
+                                            ? "bg-primary text-white border-primary"
+                                            : "bg-surface text-muted border-border hover:border-primary hover:text-primary"
                                     )}
                                 >
                                     {tag === "all" ? "Tous" : tag}
@@ -154,9 +91,8 @@ export default function ProjectsSection() {
                                     onClick={() => setShowAllFilters(!showAllFilters)}
                                     className={cn(
                                         "px-3 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full",
-                                        "transition-all duration-300",
-                                        "glass-card text-primary border border-primary/20",
-                                        "hover:border-primary/50 hover:bg-primary/10",
+                                        "bg-surface text-primary border border-border",
+                                        "hover:border-primary",
                                         "flex items-center gap-1 flex-shrink-0"
                                     )}
                                 >
@@ -175,111 +111,77 @@ export default function ProjectsSection() {
                             )}
                         </div>
                     </div>
-                </div>
 
-                {/* Horizontal scroll container */}
-                <div
-                    ref={scrollContainerRef}
-                    className="flex items-center h-screen gap-8 px-8 md:px-16"
-                >
-                    {filteredProjects.map((project, index) => (
-                        <div
-                            key={project.id}
-                            className={cn(
-                                "flex-shrink-0 w-[80vw] md:w-[60vw] lg:w-[45vw]",
-                                "relative group"
-                            )}
-                        >
-                            {/* Project card */}
-                            <div
-                                className={cn(
-                                    "modern-card",
-                                    "hover-glow",
-                                    "overflow-hidden",
-                                    "border-2 border-transparent hover:border-primary/30",
-                                    "gpu-accelerated"
-                                )}
-                            >
-                                {/* Project image */}
-                                <div className="relative aspect-video rounded-xl overflow-hidden mb-6 bg-gradient-to-br from-primary/20 to-purple-500/20 group-hover:scale-105 transition-transform duration-500">
-                                    <div className="project-image absolute inset-0 flex items-center justify-center">
-                                        <div className="text-center">
-                                            <div className="text-6xl md:text-8xl font-bold text-primary/30 mb-2">
-                                                #{index + 1}
-                                            </div>
-                                            <div className="text-sm text-foreground/40 uppercase tracking-wider">
-                                                Projet
-                                            </div>
+                    {/* Projects Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {filteredProjects.map((project, index) => (
+                            <div key={project.id} className="minimal-card group">
+                                {/* Project placeholder image */}
+                                <div className="relative aspect-video rounded-lg overflow-hidden mb-4 bg-surface-secondary flex items-center justify-center">
+                                    <div className="text-center">
+                                        <div className="text-5xl font-bold text-muted mb-1">
+                                            #{index + 1}
+                                        </div>
+                                        <div className="text-xs text-muted uppercase tracking-wider">
+                                            Projet
                                         </div>
                                     </div>
-                                    {/* Shimmer effect on hover */}
-                                    <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                     {/* View details overlay */}
                                     <button
                                         onClick={() => handleOpenModal(project)}
                                         className={cn(
                                             "absolute inset-0 flex items-center justify-center",
-                                            "bg-navy/60 opacity-0 group-hover:opacity-100",
-                                            "transition-opacity duration-300",
-                                            "cursor-pointer"
+                                            "bg-black/60 opacity-0 group-hover:opacity-100",
+                                            "transition-opacity duration-200"
                                         )}
                                     >
-                                        <div className={cn(
-                                            "flex items-center gap-2 px-6 py-3 rounded-full",
-                                            "bg-primary text-white font-semibold",
-                                            "transform scale-90 group-hover:scale-100",
-                                            "transition-transform duration-300"
-                                        )}>
-                                            <Eye className="w-5 h-5" />
+                                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-white font-medium text-sm">
+                                            <Eye className="w-4 h-4" />
                                             <span>Voir Détails</span>
                                         </div>
                                     </button>
                                 </div>
 
                                 {/* Project info */}
-                                <div className="space-y-4">
-                                    <h3 className="project-title text-2xl md:text-3xl font-display font-bold gradient-text">
+                                <div className="space-y-3">
+                                    <h3 className="text-xl md:text-2xl font-bold text-foreground">
                                         {project.title}
                                     </h3>
 
-                                    <p className="text-foreground/70 line-clamp-3 text-base md:text-lg leading-relaxed">
+                                    <p className="text-muted line-clamp-2 text-sm leading-relaxed">
                                         {project.description}
                                     </p>
 
                                     {/* Tags */}
                                     <div className="flex flex-wrap gap-2">
-                                        {project.tags.map((tag) => (
+                                        {project.tags.slice(0, 3).map((tag) => (
                                             <span
                                                 key={tag}
                                                 onClick={() => setActiveFilter(tag)}
                                                 className={cn(
-                                                    "px-4 py-2 text-sm font-medium rounded-full cursor-pointer",
-                                                    "border border-primary/20",
-                                                    "hover:bg-primary/20 hover:scale-105",
-                                                    "transition-all duration-300",
+                                                    "px-3 py-1 text-xs font-medium rounded-full cursor-pointer",
+                                                    "border border-border transition-colors",
                                                     activeFilter === tag
-                                                        ? "bg-primary/20 text-primary"
-                                                        : "bg-primary/10 text-primary"
+                                                        ? "bg-primary/10 text-primary border-primary"
+                                                        : "hover:border-primary hover:text-primary"
                                                 )}
                                             >
                                                 {tag}
                                             </span>
                                         ))}
+                                        {project.tags.length > 3 && (
+                                            <span className="px-3 py-1 text-xs text-muted">
+                                                +{project.tags.length - 3}
+                                            </span>
+                                        )}
                                     </div>
 
                                     {/* Action buttons */}
-                                    <div className="flex gap-3">
+                                    <div className="flex gap-2 pt-2">
                                         <button
                                             onClick={() => handleOpenModal(project)}
-                                            className={cn(
-                                                "inline-flex items-center gap-2 mt-4",
-                                                "px-6 py-3 rounded-full",
-                                                "bg-primary text-white font-medium",
-                                                "hover:bg-primary-dark",
-                                                "transition-all duration-300",
-                                                "hover:scale-105"
-                                            )}
+                                            className="btn-primary text-sm"
                                         >
                                             <Eye className="w-4 h-4" />
                                             <span>Détails</span>
@@ -290,27 +192,17 @@ export default function ProjectsSection() {
                                                 href={project.link}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={cn(
-                                                    "inline-flex items-center gap-2 mt-4",
-                                                    "px-6 py-3 rounded-full",
-                                                    "glass-card text-foreground font-medium",
-                                                    "border border-primary/30 hover:border-primary",
-                                                    "transition-all duration-300",
-                                                    "group/link hover:scale-105"
-                                                )}
+                                                className="btn-secondary text-sm group/link"
                                             >
                                                 <span>Voir</span>
-                                                <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                                                <ExternalLink className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
                                             </a>
                                         )}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-
-                    {/* End spacer */}
-                    <div className="flex-shrink-0 w-8" />
+                        ))}
+                    </div>
                 </div>
             </section>
 

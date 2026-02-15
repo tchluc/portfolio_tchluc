@@ -1,148 +1,76 @@
 "use client";
 
-import { useRef } from "react";
-import { useGSAP } from "@/hooks/useGSAP";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { cn } from "@/lib/cn";
 import { Mail, Github, Linkedin, Twitter, Send } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger);
-
 /**
- * ContactSection Component
- * Modern contact section with social links and email
- * Animated cards on scroll
+ * ContactSection Component - Minimalist
+ * Simple contact section with social links
  */
 export default function ContactSection() {
-    const containerRef = useRef<HTMLElement>(null);
-
-    useGSAP(
-        () => {
-            // Animate contact cards
-            gsap.from(".contact-card", {
-                y: 80,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 70%",
-                },
-            });
-
-            // Animate title
-            gsap.from(".contact-title", {
-                scale: 0.8,
-                opacity: 0,
-                duration: 1,
-                ease: "back.out(1.7)",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top 80%",
-                },
-            });
-        },
-        { scope: containerRef }
-    );
-
     const socialLinks = [
         {
             name: "Email",
-            icon: <Mail className="w-8 h-8" />,
+            icon: <Mail className="w-6 h-6" />,
             href: "mailto:tchamdjaluc@gmail.com",
             label: "tchamdjaluc@gmail.com",
-            color: "hover:text-blue-400",
-            bgGradient: "from-blue-500/20 to-cyan-500/20",
         },
         {
             name: "GitHub",
-            icon: <Github className="w-8 h-8" />,
+            icon: <Github className="w-6 h-6" />,
             href: "https://github.com/tchluc",
             label: "@tchluc",
-            color: "hover:text-purple-400",
-            bgGradient: "from-purple-500/20 to-pink-500/20",
         },
         {
             name: "LinkedIn",
-            icon: <Linkedin className="w-8 h-8" />,
+            icon: <Linkedin className="w-6 h-6" />,
             href: "https://linkedin.com/in/luc-tchamdja",
             label: "/in/luc-tchamdja",
-            color: "hover:text-cyan-400",
-            bgGradient: "from-cyan-500/20 to-blue-500/20",
         },
         {
             name: "Twitter",
-            icon: <Twitter className="w-8 h-8" />,
+            icon: <Twitter className="w-6 h-6" />,
             href: "https://twitter.com/tchluc",
             label: "@tchluc",
-            color: "hover:text-sky-400",
-            bgGradient: "from-sky-500/20 to-indigo-500/20",
         },
     ];
 
     return (
         <section
             id="contact"
-            ref={containerRef}
-            className="relative min-h-screen flex items-center px-4 md:px-16 py-32 bg-light-surface dark:bg-dark-surface overflow-hidden"
+            className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8"
         >
-            {/* Background decoration */}
-            <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl gpu-accelerated" />
-            <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl gpu-accelerated" />
-
-            <div className="max-w-7xl mx-auto w-full relative z-10">
+            <div className="max-w-5xl mx-auto">
                 {/* Title */}
-                <div className="text-center mb-12 sm:mb-16 contact-title">
-                    <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-bold text-glow mb-4 sm:mb-6">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-3">
                         Travaillons Ensemble
                     </h2>
-                    <p className="text-base sm:text-lg md:text-xl text-foreground/60 max-w-2xl mx-auto leading-relaxed px-2">
+                    <p className="text-muted text-base max-w-2xl mx-auto">
                         Vous avez un projet innovant ? Discutons de la façon dont je peux contribuer
-                        à votre réussite avec mes compétences en IA et Data Science.
+                        à votre réussite.
                     </p>
                 </div>
 
-                {/* Contact Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                {/* Social Links Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                     {socialLinks.map((link) => (
                         <a
                             key={link.name}
                             href={link.href}
                             target={link.name !== "Email" ? "_blank" : undefined}
                             rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
-                            className={cn(
-                                "contact-card",
-                                "modern-card",
-                                "group relative overflow-hidden",
-                                "transition-all duration-300",
-                                "hover:scale-105",
-                                "gpu-accelerated"
-                            )}
+                            className="minimal-card group flex items-center gap-4"
                         >
-                            {/* Background gradient on hover */}
-                            <div className={cn(
-                                "absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500",
-                                link.bgGradient
-                            )} />
-
-                            <div className="flex flex-col items-center text-center space-y-4 relative z-10">
-                                <div className={cn(
-                                    "text-primary transition-all duration-300",
-                                    link.color,
-                                    "group-hover:scale-110"
-                                )}>
-                                    {link.icon}
-                                </div>
-                                <div>
-                                    <h3 className="font-display font-bold text-xl mb-2">
-                                        {link.name}
-                                    </h3>
-                                    <p className="text-sm md:text-base text-foreground/60 break-all">
-                                        {link.label}
-                                    </p>
-                                </div>
+                            <div className="text-primary">
+                                {link.icon}
+                            </div>
+                            <div className="flex-1">
+                                <h3 className="font-bold text-foreground mb-1">
+                                    {link.name}
+                                </h3>
+                                <p className="text-sm text-muted break-all">
+                                    {link.label}
+                                </p>
                             </div>
                         </a>
                     ))}
@@ -152,16 +80,9 @@ export default function ContactSection() {
                 <div className="text-center">
                     <a
                         href="mailto:tchamdjaluc@gmail.com"
-                        className={cn(
-                            "inline-flex items-center gap-3",
-                            "px-10 py-5 rounded-full",
-                            "bg-primary text-white font-semibold text-lg",
-                            "hover-glow pulse-border",
-                            "transition-all duration-300",
-                            "group"
-                        )}
+                        className="btn-primary inline-flex items-center gap-2"
                     >
-                        <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <Send className="w-5 h-5" />
                         <span>Envoyer un Message</span>
                     </a>
                 </div>

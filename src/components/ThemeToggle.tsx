@@ -24,7 +24,7 @@ export default function ThemeToggle() {
     // Apply theme to HTML element
     useEffect(() => {
         if (!mounted) return;
-        
+
         const root = document.documentElement;
         if (theme === "dark") {
             root.classList.add("dark");
@@ -53,21 +53,9 @@ export default function ThemeToggle() {
     // Prevent hydration mismatch by not rendering until mounted
     if (!mounted) {
         return (
-            <button
-                className={cn(
-                    "fixed top-8 right-8 z-50",
-                    "w-14 h-14 rounded-full",
-                    "glass-card hover-glow",
-                    "flex items-center justify-center",
-                    "transition-all duration-300"
-                )}
-                aria-label="Toggle theme"
-                disabled
-            >
-                <div className="theme-icon">
-                    <Sun className="w-6 h-6 text-primary" />
-                </div>
-            </button>
+            <div className="w-10 h-10 rounded-md border border-light-border dark:border-dark-border flex items-center justify-center">
+                <div className="w-5 h-5 rounded-full bg-muted/20 animate-pulse" />
+            </div>
         );
     }
 
@@ -75,20 +63,18 @@ export default function ThemeToggle() {
         <button
             onClick={toggleTheme}
             className={cn(
-                "fixed top-8 right-8 z-50",
-                "w-14 h-14 rounded-full",
-                "glass-card hover-glow",
-                "flex items-center justify-center",
-                "transition-all duration-300",
-                "hover:scale-110 active:scale-95"
+                "w-10 h-10 rounded-md flex items-center justify-center transition-all duration-200",
+                "border border-light-border dark:border-dark-border bg-surface",
+                "text-muted hover:text-primary hover:border-primary",
+                "active:scale-95"
             )}
             aria-label="Toggle theme"
         >
             <div className="theme-icon">
                 {theme === "dark" ? (
-                    <Sun className="w-6 h-6 text-primary" />
+                    <Sun className="w-5 h-5 text-primary" />
                 ) : (
-                    <Moon className="w-6 h-6 text-primary" />
+                    <Moon className="w-5 h-5 text-primary" />
                 )}
             </div>
         </button>

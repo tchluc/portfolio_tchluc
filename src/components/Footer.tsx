@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
 
 /**
- * Footer Component
+ * Footer Component - Minimalist
  * Clean footer with social links and copyright
  */
 export default function Footer() {
@@ -41,24 +41,24 @@ export default function Footer() {
     ];
 
     return (
-        <footer className="relative bg-light-bg dark:bg-dark-bg border-t border-light-border dark:border-dark-border/30">
-            <div className="max-w-7xl mx-auto px-4 md:px-16 py-12">
+        <footer className="border-t border-border">
+            <div className="max-w-6xl mx-auto px-4 md:px-8 py-12">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     {/* Brand Column */}
-                    <div className="space-y-4">
-                        <h3 className="text-2xl md:text-3xl font-display font-bold gradient-text">
+                    <div className="space-y-3">
+                        <h3 className="text-2xl font-bold text-foreground">
                             Luc Tchamdja
                         </h3>
-                        <p className="text-foreground/60 text-sm md:text-base leading-relaxed">
-                            Ingénieur en Intelligence Artificielle et Data Science, 
-                            passionné par l&apos;innovation technologique et la création de solutions intelligentes.
+                        <p className="text-muted text-sm leading-relaxed">
+                            Ingénieur en Intelligence Artificielle et Data Science,
+                            passionné par l&apos;innovation technologique.
                         </p>
                     </div>
 
                     {/* Quick Links Column */}
-                    <div className="space-y-4">
-                        <h4 className="text-lg font-display font-semibold text-foreground">
+                    <div className="space-y-3">
+                        <h4 className="text-base font-semibold text-foreground">
                             Navigation
                         </h4>
                         <ul className="space-y-2">
@@ -66,7 +66,7 @@ export default function Footer() {
                                 <li key={link.name}>
                                     <a
                                         href={link.href}
-                                        className="text-foreground/60 hover:text-primary transition-colors text-sm"
+                                        className="text-muted hover:text-primary transition-colors text-sm"
                                     >
                                         {link.name}
                                     </a>
@@ -76,11 +76,11 @@ export default function Footer() {
                     </div>
 
                     {/* Social Links Column */}
-                    <div className="space-y-4">
-                        <h4 className="text-lg font-display font-semibold text-foreground">
+                    <div className="space-y-3">
+                        <h4 className="text-base font-semibold text-foreground">
                             Suivez-moi
                         </h4>
-                        <div className="flex gap-4">
+                        <div className="flex gap-3">
                             {socialLinks.map((link) => (
                                 <a
                                     key={link.name}
@@ -88,10 +88,8 @@ export default function Footer() {
                                     target={link.name !== "Email" ? "_blank" : undefined}
                                     rel={link.name !== "Email" ? "noopener noreferrer" : undefined}
                                     className={cn(
-                                        "modern-card p-3 rounded-xl",
-                                        "text-foreground/60 hover:text-primary",
-                                        "transition-all duration-300",
-                                        "hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                                        "text-muted hover:text-primary",
+                                        "transition-colors duration-200"
                                     )}
                                     aria-label={link.name}
                                 >
@@ -103,21 +101,18 @@ export default function Footer() {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-light-border dark:border-dark-border/30 my-8" />
+                <div className="border-t border-border my-6" />
 
                 {/* Bottom Footer */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-foreground/40 text-sm md:text-base">
+                    <p className="text-muted text-sm">
                         © {currentYear} Luc Tchamdja. Tous droits réservés.
                     </p>
-                    <p className="text-foreground/40 text-sm md:text-base flex items-center gap-2">
-                        Créé avec <Heart className="w-4 h-4 text-primary fill-primary animate-pulse" /> et Next.js
+                    <p className="text-muted text-sm flex items-center gap-2">
+                        Créé avec <Heart className="w-4 h-4 text-primary fill-primary" /> et Next.js
                     </p>
                 </div>
             </div>
-
-            {/* Decorative gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
         </footer>
     );
 }
